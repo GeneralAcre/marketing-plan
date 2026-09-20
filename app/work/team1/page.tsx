@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { cn } from "cn";
@@ -5,6 +6,14 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import SiteHeader from "@/components/site-header";
 import { SectionTag } from "@/components/section-tag";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/table";
 import {
   Target,
   FileText,
@@ -19,6 +28,8 @@ import {
   Globe,
   UserPlus,
   CalendarClock,
+  ClipboardList,
+  ArrowRight,
   ArrowLeft,
   MessageCircle,
   type LucideIcon,
@@ -287,6 +298,99 @@ const MONTHLY_CADENCE = [
       "Partner Spotlight — rotates: foundation AMA, startup panel, exchange co-branded session",
     purpose: "Diversifies audience beyond students, generates partner goodwill.",
     owner: "Negotiated centrally",
+  },
+];
+
+const OVERVIEW_STATS = [
+  {
+    label: "The Decision",
+    value: "5 / 10",
+    detail: "Clusters chosen over campuses — density over spread.",
+  },
+  {
+    label: "The Budget",
+    value: "667 THB",
+    detail: "Per attendee, on-target across 5 chapters.",
+  },
+  {
+    label: "The Output",
+    value: "100%",
+    detail: "Attendees leave with shipped, verified wallets.",
+  },
+];
+
+const EXECUTION_PHASES = [
+  {
+    label: "Pre-flight",
+    detail: "RICE-score selection, MOUs, curriculum.",
+  },
+  {
+    label: "Execution",
+    detail: "Live deploy sessions, QR wallet onboarding.",
+  },
+  {
+    label: "Compounding",
+    detail: "POAP retention, AcreLabs handoff, next chapter.",
+  },
+];
+
+type Team1Event = {
+  name: string;
+  type: string;
+  date: string;
+  status: "done" | "scheduled";
+  registered?: number;
+  attendees?: number;
+  conversion?: string;
+  wallets?: number;
+};
+
+const TEAM1_EVENTS: Team1Event[] = [
+  {
+    name: "Chula — Avalanche Builder Workshop & Networking",
+    type: "Workshop",
+    date: "Sep 5, 2026",
+    status: "done" as const,
+    registered: 31,
+    attendees: 18,
+    conversion: "58.06%",
+    wallets: 7,
+  },
+  {
+    name: "Thailand Chapter Launch",
+    type: "Community",
+    date: "Sep 24, 2026",
+    status: "scheduled" as const,
+  },
+  {
+    name: "Codebase Hackathon — Chula Edition",
+    type: "Hackathon",
+    date: "Sep 26, 2026",
+    status: "scheduled" as const,
+  },
+  {
+    name: "KU — Introduction to Blockchain",
+    type: "Workshop",
+    date: "Sep 27, 2026",
+    status: "scheduled" as const,
+  },
+  {
+    name: "First Community Call",
+    type: "Online",
+    date: "Oct 3, 2026",
+    status: "scheduled" as const,
+  },
+  {
+    name: "KMITL — Introduction to Blockchain",
+    type: "Workshop",
+    date: "Oct 6, 2026",
+    status: "scheduled" as const,
+  },
+  {
+    name: "TUBC — Vibe Code Your First Avalanche dApp",
+    type: "Workshop",
+    date: "Oct 7, 2026",
+    status: "scheduled" as const,
   },
 ];
 
@@ -881,6 +985,138 @@ export default function Team1CaseStudy() {
               line that separates &quot;ran events&quot; from running a regional
               program.
             </p>
+          </div>
+        </CaseSection>
+
+        {/* ───────────────── 14 — CHAPTER TRACKER & EXECUTION DETAIL ───────────────── */}
+        <CaseSection index="14" title="Chapter Tracker & Execution Detail" icon={ClipboardList}>
+          <p className="max-w-2xl text-sm leading-relaxed text-black/55">
+            The overview stats, run-of-show, and per-chapter numbers behind
+            the summary card on the main portfolio page.
+          </p>
+
+          <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-3">
+            {OVERVIEW_STATS.map((stat) => (
+              <div key={stat.label} className="rounded-2xl bg-black/[0.03] p-6">
+                <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
+                  {stat.label}
+                </div>
+                <div className="mt-2 text-2xl font-bold">{stat.value}</div>
+                <p className="mt-1 text-sm leading-relaxed text-black/70">
+                  {stat.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 rounded-2xl bg-black/[0.03] p-6">
+            <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
+              Pre-flight → Execution → Compounding
+            </div>
+            <div className="mt-4 grid grid-cols-1 items-stretch gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr]">
+              {EXECUTION_PHASES.map((phase, i) => (
+                <Fragment key={phase.label}>
+                  <div className="rounded-xl bg-white p-4 shadow-sm ring-1 ring-black/5">
+                    <div className="text-xs font-bold uppercase tracking-wide">
+                      {phase.label}
+                    </div>
+                    <p className="mt-2 text-xs leading-relaxed text-black/60">
+                      {phase.detail}
+                    </p>
+                  </div>
+                  {i < EXECUTION_PHASES.length - 1 && (
+                    <div className="hidden items-center justify-center text-black/30 md:flex">
+                      <ArrowRight className="size-4" />
+                    </div>
+                  )}
+                </Fragment>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-4">
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
+                Chapter Tracker
+              </div>
+              <Badge
+                variant="outline"
+                className="h-auto px-2.5 py-1 text-[11px] font-medium text-black/60"
+              >
+                1 / {TEAM1_EVENTS.length} Chapters Live
+              </Badge>
+            </div>
+
+            <div className="mt-4 overflow-hidden rounded-2xl ring-1 ring-black/8">
+              <Table>
+                <TableHeader>
+                  <TableRow className="border-black/8 hover:bg-transparent">
+                    <TableHead className="text-[10px] uppercase tracking-wide text-black/45">
+                      Event
+                    </TableHead>
+                    <TableHead className="text-[10px] uppercase tracking-wide text-black/45">
+                      Date
+                    </TableHead>
+                    <TableHead className="text-[10px] uppercase tracking-wide text-black/45">
+                      Status
+                    </TableHead>
+                    <TableHead className="text-right text-[10px] uppercase tracking-wide text-black/45">
+                      Reg.
+                    </TableHead>
+                    <TableHead className="text-right text-[10px] uppercase tracking-wide text-black/45">
+                      Att.
+                    </TableHead>
+                    <TableHead className="text-right text-[10px] uppercase tracking-wide text-black/45">
+                      Conv.
+                    </TableHead>
+                    <TableHead className="text-right text-[10px] uppercase tracking-wide text-black/45">
+                      Wallets
+                    </TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {TEAM1_EVENTS.map((ev) => (
+                    <TableRow key={ev.name} className="border-black/8">
+                      <TableCell className="max-w-56 truncate font-medium">
+                        {ev.name}
+                        <div className="text-[11px] font-normal text-black/45">
+                          {ev.type}
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-black/55">
+                        {ev.date}
+                      </TableCell>
+                      <TableCell>
+                        {ev.status === "done" ? (
+                          <Badge className="h-auto px-2.5 py-0.5 text-[10px] font-semibold">
+                            Live
+                          </Badge>
+                        ) : (
+                          <Badge
+                            variant="outline"
+                            className="h-auto px-2.5 py-0.5 text-[10px] font-medium text-black/45"
+                          >
+                            Scheduled
+                          </Badge>
+                        )}
+                      </TableCell>
+                      <TableCell className="text-right tabular-nums">
+                        {ev.registered ?? "—"}
+                      </TableCell>
+                      <TableCell className="text-right tabular-nums">
+                        {ev.attendees ?? "—"}
+                      </TableCell>
+                      <TableCell className="text-right tabular-nums">
+                        {ev.conversion ?? "—"}
+                      </TableCell>
+                      <TableCell className="text-right tabular-nums">
+                        {ev.wallets ?? "—"}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           </div>
         </CaseSection>
 
