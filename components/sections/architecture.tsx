@@ -7,6 +7,7 @@ const UNIVERSITY_CONTROL = [
     statLabel: "Universities",
     detail: "Chula · Thammasat · Kasetsart · KMITL · Mahidol",
     tags: ["Workshop", "Event"],
+    highlight: true,
   },
   {
     order: "02",
@@ -61,7 +62,9 @@ export function Architecture() {
                 <div className="h-3 w-px bg-black/15 md:h-6" />
                 <div className="w-full rounded-2xl bg-black/[0.03] md:max-w-xs">
                   <div className="p-2 text-center md:p-4">
-                    <div className="text-sm font-bold leading-tight sm:text-base md:text-2xl">
+                    <div
+                      className={`text-sm font-bold leading-tight sm:text-base md:text-2xl ${item.highlight ? "text-[#F84E00]" : ""}`}
+                    >
                       {item.stat}
                     </div>
                     <div className="mt-1 text-[7px] uppercase leading-tight tracking-wide text-black/45 sm:text-[8px] md:text-[11px]">

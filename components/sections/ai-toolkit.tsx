@@ -14,8 +14,8 @@ export function AiToolkit() {
     <section id="ai-toolkit" className="w-full scroll-mt-24">
       <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 md:p-12 lg:p-16">
         <p className="flex max-w-2xl items-center gap-2 text-2xl font-bold tracking-tight md:text-3xl">
-          <Sparkles className="size-6 shrink-0" />I use AI to ship, not
-          just to summarize.
+          <Sparkles className="size-6 shrink-0 text-[#F84E00]" />I use AI to
+          ship, not just to summarize.
         </p>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-black/55">
           The bar for GTM in 2026 isn&apos;t knowing AI tools exist — it&apos;s

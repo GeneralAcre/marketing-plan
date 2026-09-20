@@ -18,7 +18,6 @@ import {
   Target,
   ClipboardList,
   ListOrdered,
-  Activity,
   Map,
   ArrowRight,
   ArrowLeft,
@@ -178,6 +177,7 @@ const OVERVIEW_STATS = [
     label: "The Budget",
     value: "667 THB",
     detail: "Per attendee.",
+    highlight: true,
   },
   {
     label: "The Output",
@@ -307,20 +307,20 @@ const GROWTH_LOOP = [
 
 // RICE table heat-map bands — tuned to this dataset's actual spread, not a generic 0–100 scale.
 function reachTone(n: number) {
-  if (n >= 8) return "bg-blue-600 text-white";
-  if (n >= 6) return "bg-blue-200 text-black";
-  return "bg-blue-50 text-black/70";
+  if (n >= 8) return "bg-[#F84E00] text-white";
+  if (n >= 6) return "bg-[#FFCE4E] text-black";
+  return "bg-[#FFCE4E]/15 text-black/70";
 }
 function impactTone(n: number) {
-  if (n >= 7) return "bg-blue-600 text-white";
-  if (n >= 5) return "bg-blue-200 text-black";
-  return "bg-blue-50 text-black/70";
+  if (n >= 7) return "bg-[#F84E00] text-white";
+  if (n >= 5) return "bg-[#FFCE4E] text-black";
+  return "bg-[#FFCE4E]/15 text-black/70";
 }
 function confidenceTone(pct: string) {
   const n = Number.parseInt(pct, 10);
-  if (n >= 80) return "bg-blue-600 text-white";
-  if (n >= 60) return "bg-blue-200 text-black";
-  return "bg-blue-50 text-black/70";
+  if (n >= 80) return "bg-[#F84E00] text-white";
+  if (n >= 60) return "bg-[#FFCE4E] text-black";
+  return "bg-[#FFCE4E]/15 text-black/70";
 }
 function effortTone(n: number) {
   if (n >= 7) return "bg-neutral-400 text-white";
@@ -329,9 +329,9 @@ function effortTone(n: number) {
 }
 function scoreTone(score: string) {
   const n = Number.parseFloat(score);
-  if (n >= 10) return "bg-orange-500 text-white";
-  if (n >= 5) return "bg-orange-200 text-black";
-  return "bg-orange-50 text-black/70";
+  if (n >= 10) return "bg-[#F84E00] text-white";
+  if (n >= 5) return "bg-[#FFCE4E] text-black";
+  return "bg-[#FFCE4E]/15 text-black/70";
 }
 
 const BRIEF = {
@@ -390,51 +390,6 @@ const DECISION_LOG = [
   },
 ];
 
-const INSTRUMENTATION = {
-  tracked: [
-    "Registration source (QR / social / referral)",
-    "Registered → attendance conversion",
-    "Wallet deploy completion",
-    "Contract verification",
-    "Telegram join + 30-day activity",
-  ],
-  vanity:
-    "Total social impressions/reach — tracks awareness spend, not conversion.",
-  primary:
-    "Cost per verified builder, not cost per attendee — the number that defends the budget.",
-};
-
-const ITERATION_LOG = [
-  {
-    version: "v1 — Chula (done)",
-    change: "Generic messaging: \"Learn blockchain basics.\"",
-    result: "58.06% registered → attendance conversion, 50% wallet deploy rate.",
-  },
-  {
-    version: "v2 — KU (planned)",
-    change:
-      "Hypothesis: outcome-specific messaging (\"Deploy your first contract in 90 minutes\") lifts show-up rate further.",
-    result: "Pending — chapter not yet run.",
-  },
-];
-
-const KILL_CRITERIA = {
-  setBefore: "Set before Chula, the first chapter, ran.",
-  rules: [
-    "Wallet-deploy < 30% → pause, re-scope curriculum.",
-    "Cost / verified builder > 1,500 THB → pause, renegotiate budget.",
-  ],
-  outcome:
-    "Chula: 50% deploy, ~1,334 THB / builder — both inside threshold. Proceeding to chapter 2.",
-};
-
-const STAKEHOLDER_ASK = {
-  audience: "Avalanche Foundation regional lead + community sponsor",
-  ask: "200,000 THB + curriculum support, 5 clusters, 8 weeks.",
-  framing:
-    "Grants run 5,000–10,000 THB / builder; this targets under 1,500 THB, plus a retention loop a grant can't buy.",
-};
-
 const ROLE_SCOPE = {
   lanes: [
     {
@@ -454,17 +409,6 @@ const ROLE_SCOPE = {
       detail: "Owns community + online content.",
     },
   ],
-};
-
-const PERSONA = {
-  name: "\"Convertible Builder\"",
-  traits: [
-    "2nd–4th year CS / Engineering student",
-    "Prior exposure to at least one hackathon or coding club",
-    "Comfortable with English-language technical docs",
-    "Already active on Telegram or Discord",
-  ],
-  use: "Drove university selection (active dev clubs) and outcome-oriented messaging.",
 };
 
 const ROADMAP = [
@@ -621,7 +565,7 @@ export default function Team1CaseStudy() {
 
             <div className="mt-6 grid grid-cols-3 gap-3 md:max-w-xl">
               <div>
-                <div className="text-3xl font-bold md:text-4xl">200K</div>
+                <div className="text-3xl font-bold text-[#F84E00] md:text-4xl">200K</div>
                 <div className="mt-0.5 text-[11px] uppercase tracking-wide text-black/45">
                   THB Budget
                 </div>
@@ -684,7 +628,7 @@ export default function Team1CaseStudy() {
           </div>
 
           <div className="mt-4 flex items-center gap-4 rounded-2xl border border-black/10 p-5">
-            <div className="text-3xl font-bold shrink-0">42%</div>
+            <div className="text-3xl font-bold text-[#F84E00] shrink-0">42%</div>
             <p className="text-sm leading-relaxed text-black/70">
               no-show rate (31 registered, 18 attended) — the bottleneck to
               fix before scaling awareness spend.
@@ -711,7 +655,7 @@ export default function Team1CaseStudy() {
 
           <div className="mt-4 flex flex-wrap items-center gap-6 rounded-2xl bg-black p-6 text-white">
             <div>
-              <div className="text-3xl font-bold">~1,334 THB</div>
+              <div className="text-3xl font-bold text-[#FFCE4E]">~1,334 THB</div>
               <div className="mt-1 text-[11px] uppercase tracking-wide text-white/50">
                 Cost / Verified Builder
               </div>
@@ -734,7 +678,11 @@ export default function Team1CaseStudy() {
                 <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
                   {stat.label}
                 </div>
-                <div className="mt-2 text-2xl font-bold">{stat.value}</div>
+                <div
+                  className={`mt-2 text-2xl font-bold ${stat.highlight ? "text-[#F84E00]" : ""}`}
+                >
+                  {stat.value}
+                </div>
                 <p className="mt-1 text-sm leading-relaxed text-black/70">
                   {stat.detail}
                 </p>
@@ -962,7 +910,7 @@ export default function Team1CaseStudy() {
             <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
               Top Cluster
             </div>
-            <div className="mt-2 text-3xl font-bold">16.2</div>
+            <div className="mt-2 text-3xl font-bold text-[#F84E00]">16.2</div>
             <p className="mt-1 text-sm text-black/55">
               Chula / Thammasat / Kasetsart — first chapter to run.
             </p>
@@ -979,15 +927,15 @@ export default function Team1CaseStudy() {
                     R · I · C
                   </span>
                   <span className="flex items-center gap-1">
-                    <span className="size-2.5 rounded-sm bg-blue-50" />
+                    <span className="size-2.5 rounded-sm bg-[#FFCE4E]/15" />
                     Low
                   </span>
                   <span className="flex items-center gap-1">
-                    <span className="size-2.5 rounded-sm bg-blue-200" />
+                    <span className="size-2.5 rounded-sm bg-[#FFCE4E]" />
                     Mid
                   </span>
                   <span className="flex items-center gap-1">
-                    <span className="size-2.5 rounded-sm bg-blue-600" />
+                    <span className="size-2.5 rounded-sm bg-[#F84E00]" />
                     High
                   </span>
                 </div>
@@ -996,15 +944,15 @@ export default function Team1CaseStudy() {
                     Score
                   </span>
                   <span className="flex items-center gap-1">
-                    <span className="size-2.5 rounded-sm bg-orange-50" />
+                    <span className="size-2.5 rounded-sm bg-[#FFCE4E]/15" />
                     &lt;5
                   </span>
                   <span className="flex items-center gap-1">
-                    <span className="size-2.5 rounded-sm bg-orange-200" />
+                    <span className="size-2.5 rounded-sm bg-[#FFCE4E]" />
                     5–9.9
                   </span>
                   <span className="flex items-center gap-1">
-                    <span className="size-2.5 rounded-sm bg-orange-500" />
+                    <span className="size-2.5 rounded-sm bg-[#F84E00]" />
                     10+
                   </span>
                 </div>
@@ -1232,144 +1180,7 @@ export default function Team1CaseStudy() {
           </div>
         </CaseSection>
 
-        {/* ───────────────── 04 — INSTRUMENTATION, LEARNING & PEOPLE ───────────────── */}
-        <CaseSection id="process" title="Instrumentation, Learning & People" icon={Activity}>
-          <p className="max-w-2xl text-sm leading-relaxed text-black/55">
-            Defined before the first event ran, not reconstructed after.
-          </p>
-
-          <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-3">
-            <div className="rounded-2xl bg-black/[0.03] p-6 md:col-span-2">
-              <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
-                Tracked From Day 1
-              </div>
-              <div className="mt-2 flex flex-wrap gap-1.5">
-                {INSTRUMENTATION.tracked.map((t) => (
-                  <Badge
-                    key={t}
-                    variant="outline"
-                    className="h-auto px-2.5 py-1 text-[11px] font-medium text-black/60"
-                  >
-                    {t}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-            <div className="rounded-2xl bg-black/[0.03] p-6">
-              <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
-                Primary Metric
-              </div>
-              <p className="mt-2 text-sm leading-relaxed text-black/70">
-                {INSTRUMENTATION.primary}
-              </p>
-            </div>
-            <div className="rounded-2xl bg-black/[0.03] p-6 md:col-span-3">
-              <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
-                Vanity Metric — Deliberately Deprioritized
-              </div>
-              <p className="mt-2 text-sm leading-relaxed text-black/55">
-                {INSTRUMENTATION.vanity}
-              </p>
-            </div>
-          </div>
-
-          <SubHeading>Experiment / Iteration Log</SubHeading>
-          <div className="mt-3 flex flex-col gap-3">
-            {ITERATION_LOG.map((it) => (
-              <div key={it.version} className="rounded-2xl bg-black/[0.03] p-5">
-                <div className="text-xs font-bold uppercase tracking-wide">
-                  {it.version}
-                </div>
-                <p className="mt-2 text-sm text-black/70">
-                  <span className="text-black/45">Change: </span>
-                  {it.change}
-                </p>
-                <p className="mt-1 text-sm text-black/70">
-                  <span className="text-black/45">Result: </span>
-                  {it.result}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <SubHeading>Retro / Postmortem — Kill Criteria</SubHeading>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-black/55">
-            {KILL_CRITERIA.setBefore}
-          </p>
-          <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
-            <div className="rounded-2xl bg-black/[0.03] p-6">
-              <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
-                Kill Thresholds
-              </div>
-              <div className="mt-2 flex flex-col gap-2">
-                {KILL_CRITERIA.rules.map((r) => (
-                  <div
-                    key={r}
-                    className="rounded-lg bg-white px-3 py-2 text-sm leading-relaxed text-black/70 shadow-sm ring-1 ring-black/5"
-                  >
-                    {r}
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="rounded-2xl bg-black p-6 text-white">
-              <div className="text-[11px] font-semibold uppercase tracking-wide text-white/50">
-                Outcome After Chapter 1
-              </div>
-              <p className="mt-2 text-sm leading-relaxed text-white/80">
-                {KILL_CRITERIA.outcome}
-              </p>
-            </div>
-          </div>
-
-          <SubHeading>Stakeholder Alignment &amp; Persona</SubHeading>
-          <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
-            <div className="rounded-2xl bg-black/[0.03] p-6">
-              <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
-                Audience
-              </div>
-              <p className="mt-2 text-sm text-black/70">
-                {STAKEHOLDER_ASK.audience}
-              </p>
-              <div className="mt-4 text-[11px] font-semibold uppercase tracking-wide text-black/45">
-                The Ask
-              </div>
-              <p className="mt-2 text-sm text-black/70">{STAKEHOLDER_ASK.ask}</p>
-              <div className="mt-4 text-[11px] font-semibold uppercase tracking-wide text-black/45">
-                Framing
-              </div>
-              <p className="mt-2 text-sm leading-relaxed text-black/70">
-                {STAKEHOLDER_ASK.framing}
-              </p>
-            </div>
-
-            <div className="rounded-2xl bg-black/[0.03] p-6">
-              <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
-                Persona
-              </div>
-              <div className="mt-2 text-lg font-bold">{PERSONA.name}</div>
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                {PERSONA.traits.map((t) => (
-                  <Badge
-                    key={t}
-                    variant="outline"
-                    className="h-auto px-2.5 py-1 text-[11px] font-medium text-black/60"
-                  >
-                    {t}
-                  </Badge>
-                ))}
-              </div>
-              <div className="mt-4 text-[11px] font-semibold uppercase tracking-wide text-black/45">
-                How It Was Used
-              </div>
-              <p className="mt-2 text-sm leading-relaxed text-black/70">
-                {PERSONA.use}
-              </p>
-            </div>
-          </div>
-        </CaseSection>
-
-        {/* ───────────────── 05 — WHAT'S NEXT: ROADMAP & EXPANSION ───────────────── */}
+        {/* ───────────────── 04 — WHAT'S NEXT: ROADMAP & EXPANSION ───────────────── */}
         <CaseSection id="roadmap" title="What's Next — Roadmap & Expansion" icon={Map}>
           <p className="max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
             The builder-to-funding loop.
@@ -1508,13 +1319,13 @@ export default function Team1CaseStudy() {
 
           <div className="mt-4 flex flex-wrap gap-3">
             <div className="flex flex-1 items-center gap-4 rounded-2xl bg-black p-6 text-white">
-              <div className="text-3xl font-bold shrink-0">1 → 3</div>
+              <div className="text-3xl font-bold text-[#FFCE4E] shrink-0">1 → 3</div>
               <p className="text-sm leading-relaxed text-white/80">
                 cities, 2 chapter leads recruited &amp; managed.
               </p>
             </div>
             <div className="flex flex-1 items-center gap-4 rounded-2xl bg-black p-6 text-white">
-              <div className="text-3xl font-bold shrink-0">3</div>
+              <div className="text-3xl font-bold text-[#FFCE4E] shrink-0">3</div>
               <p className="text-sm leading-relaxed text-white/80">
                 cities run without me executing every event —
                 &quot;ran events&quot; vs. running a program.

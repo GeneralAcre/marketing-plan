@@ -8,6 +8,7 @@ export function StatTile({
   icon: Icon,
   tone = "light",
   className,
+  valueClassName,
 }: {
   value: string;
   label: string;
@@ -15,6 +16,7 @@ export function StatTile({
   icon?: LucideIcon;
   tone?: "light" | "dark";
   className?: string;
+  valueClassName?: string;
 }) {
   const soft = tone === "dark";
   return (
@@ -33,7 +35,7 @@ export function StatTile({
           )}
         />
       )}
-      <div className="text-2xl font-bold tracking-tight md:text-3xl">
+      <div className={cn("text-2xl font-bold tracking-tight md:text-3xl", valueClassName)}>
         {value}
       </div>
       <div

@@ -6,7 +6,7 @@ import { StatTile } from "@/components/stat-tile";
 import { ArrowUpRight, Wallet, GraduationCap, CalendarCheck } from "lucide-react";
 
 const TEAM1_STATS = [
-  { value: "200K", label: "THB Budget", icon: Wallet },
+  { value: "200K", label: "THB Budget", icon: Wallet, valueClassName: "text-[#FFCE4E]" },
   { value: "5", label: "Universities", icon: GraduationCap },
   { value: "8", label: "Events Hosted", icon: CalendarCheck },
 ];
@@ -25,12 +25,13 @@ export function Hero() {
         </h1>
 
         <p className="mt-6 max-w-2xl text-2xl font-bold leading-snug tracking-tight md:text-3xl">
-          200K THB → 5-University Builder Pipeline, Run Like a Product.
+          200K THB, Zero Marketing Hires — a 5-University Builder
+          Pipeline Run Like a Product.
         </p>
 
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-black/55 md:text-lg">
-          RICE-scored prioritization, 8 events shipped, and a playbook
-          that scales — not a one-off marketing campaign.
+          RICE-scored prioritization, 8 events shipped solo, and builder
+          acquisition at ~1,334 THB — 4–7x cheaper than industry grants.
         </p>
 
         <div className="mt-6 flex flex-wrap gap-3">
@@ -64,6 +65,7 @@ export function Hero() {
                 value={stat.value}
                 label={stat.label}
                 icon={stat.icon}
+                valueClassName={stat.valueClassName}
                 tone="dark"
               />
             ))}

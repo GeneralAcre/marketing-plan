@@ -48,15 +48,18 @@ export function CaseStudies() {
                   </Link>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {["ADR #001", "200K THB Budget", "5 Chapters"].map((tag) => (
-                    <Badge
-                      key={tag}
-                      variant="outline"
-                      className="h-auto px-2.5 py-1 text-[11px] font-medium text-black/60"
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
+                  <Badge
+                    variant="outline"
+                    className="h-auto px-2.5 py-1 text-[11px] font-medium text-black/60"
+                  >
+                    ADR #001
+                  </Badge>
+                  <Badge className="h-auto border-transparent bg-[#FFCE4E] px-2.5 py-1 text-[11px] font-semibold text-black">
+                    200K THB Budget
+                  </Badge>
+                  <Badge className="h-auto border-transparent bg-[#F84E00] px-2.5 py-1 text-[11px] font-semibold text-white">
+                    5 Chapters
+                  </Badge>
                 </div>
               </div>
             </CardHeader>

@@ -4,7 +4,11 @@ import { StatTile } from "@/components/stat-tile";
 
 const TEAM1_HIGHLIGHTS = [
   { value: "667 THB", label: "Cost / Attendee — Budget Ownership" },
-  { value: "16.2", label: "Top RICE Score — Strategic Prioritization" },
+  {
+    value: "16.2",
+    label: "Top RICE Score — Strategic Prioritization",
+    valueClassName: "text-[#FFCE4E]",
+  },
   { value: "5", label: "Universities — Cross-Functional Ops" },
 ];
 
@@ -31,6 +35,7 @@ export function Impact() {
                 key={item.label}
                 value={item.value}
                 label={item.label}
+                valueClassName={item.valueClassName}
                 tone="dark"
               />
             ))}
