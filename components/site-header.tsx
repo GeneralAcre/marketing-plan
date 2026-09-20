@@ -10,7 +10,7 @@ const NAV_LINKS = [
 
 export default function SiteHeader() {
   return (
-    <header className="sticky top-0 z-20 w-full px-4 pt-4 md:px-8 md:pt-6">
+    <header className="sticky top-0 z-20 w-full bg-background px-4 pt-4 md:px-8 md:pt-6">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 rounded-full border border-black/10 bg-white/90 px-4 py-2.5 shadow-sm backdrop-blur-md md:px-6">
         <Link
           href="/"

@@ -31,7 +31,7 @@ export function CaseStudies() {
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <CardTitle className="font-sans text-xl font-bold md:text-2xl">
-                    Avalanche Team1 — 5-University Series
+                    Avalanche Team1 : 5 University Series
                   </CardTitle>
                   <p className="mt-1 text-sm font-medium text-black/55">
                     Operations Lead
@@ -43,7 +43,7 @@ export function CaseStudies() {
                       "mt-4 h-auto rounded-full px-6 py-3 text-sm font-semibold"
                     )}
                   >
-                    Full Case Study
+                    Details
                     <ArrowUpRight />
                   </Link>
                 </div>

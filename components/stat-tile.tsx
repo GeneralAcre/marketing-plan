@@ -1,15 +1,18 @@
+import type { LucideIcon } from "lucide-react";
 import { cn } from "cn";
 
 export function StatTile({
   value,
   label,
   detail,
+  icon: Icon,
   tone = "light",
   className,
 }: {
   value: string;
   label: string;
   detail?: string;
+  icon?: LucideIcon;
   tone?: "light" | "dark";
   className?: string;
 }) {
@@ -22,6 +25,14 @@ export function StatTile({
         className
       )}
     >
+      {Icon && (
+        <Icon
+          className={cn(
+            "mb-2 size-4",
+            soft ? "text-white/45" : "text-black/35"
+          )}
+        />
+      )}
       <div className="text-2xl font-bold tracking-tight md:text-3xl">
         {value}
       </div>

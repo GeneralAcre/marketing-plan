@@ -1,4 +1,3 @@
-import { GithubMark, XMark } from "@/components/brand-icons";
 import { Mail, Send } from "lucide-react";
 
 const CONTACT_LINKS = [
@@ -10,23 +9,9 @@ const CONTACT_LINKS = [
   },
   {
     label: "Telegram",
-    value: "@acre",
-    href: "https://t.me/acre",
+    value: "@AcreSanpaphat",
+    href: "https://t.me/AcreSanpaphat",
     icon: Send,
-  },
-  {
-    label: "X / Twitter",
-    value: "@acre",
-    href: "https://x.com/acre",
-    icon: XMark,
-    hideOnMobile: true,
-  },
-  {
-    label: "GitHub",
-    value: "@acre",
-    href: "https://github.com/acre",
-    icon: GithubMark,
-    hideOnMobile: true,
   },
 ];
 
@@ -37,12 +22,8 @@ export function Contact() {
         <p className="max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
           Let&apos;s talk.
         </p>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-black/55">
-          Open for GTM, Growth &amp; Operations roles — Agoda / Binance /
-          Ecosystem teams welcome.
-        </p>
 
-        <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
           {CONTACT_LINKS.map((link) => (
             <a
               key={link.label}
@@ -53,9 +34,7 @@ export function Contact() {
                   ? "noopener noreferrer"
                   : undefined
               }
-              className={`group flex-col gap-3 rounded-2xl bg-black/[0.03] p-5 transition-colors hover:bg-black hover:text-white ${
-                link.hideOnMobile ? "hidden sm:flex" : "flex"
-              }`}
+              className="group flex flex-col gap-3 rounded-2xl bg-black/[0.03] p-5 transition-colors hover:bg-black hover:text-white"
             >
               <link.icon className="size-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               <div className="flex flex-col gap-1">

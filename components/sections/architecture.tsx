@@ -1,27 +1,30 @@
 const UNIVERSITY_CONTROL = [
   {
     order: "01",
-    title: "Cluster Selection",
-    shortTitle: "Cluster",
+    title: "University",
+    shortTitle: "University",
     stat: "5",
-    statLabel: "Universities Chosen (RICE)",
-    detail: "Chula · Thammasat · Kasetsart · KMUTT/KMITL · CMU",
+    statLabel: "Universities",
+    detail: "Chula · Thammasat · Kasetsart · KMITL · Mahidol",
+    tags: ["Workshop", "Event"],
   },
   {
     order: "02",
-    title: "Budget & Delivery",
-    shortTitle: "Budget",
-    stat: "667 THB",
-    statLabel: "Cost / Attendee",
-    detail: "200K THB envelope · workshop curriculum · live deploys",
+    title: "Internal Team1",
+    shortTitle: "Internal",
+    stat: "Ops & Merch",
+    statLabel: "Internal Coordination",
+    detail: "Tracking sheets · merch sourcing · cross-chapter handoffs",
+    tags: [] as string[],
   },
   {
     order: "03",
-    title: "Community Retention",
-    shortTitle: "Retention",
+    title: "Community",
+    shortTitle: "Community",
     stat: "AcreLabs",
     statLabel: "Handoff Loop",
     detail: "POAP retention · Telegram · ambassador seeding",
+    tags: ["Engage", "Event"],
   },
 ];
 
@@ -38,7 +41,7 @@ export function Architecture() {
           {/* Root node */}
           <div className="flex justify-center">
             <div className="rounded-full bg-black px-4 py-2 text-center text-[10px] font-bold uppercase tracking-widest text-white md:px-6 md:py-3 md:text-xs">
-              Acre — Team1 Ops Lead
+              Operation Lead
             </div>
           </div>
 
@@ -68,6 +71,18 @@ export function Architecture() {
                   <div className="hidden px-4 pb-4 text-center text-xs uppercase tracking-wide text-black/50 md:block">
                     {item.detail}
                   </div>
+                  {item.tags.length > 0 && (
+                    <div className="hidden flex-wrap items-center justify-center gap-1.5 px-4 pb-4 md:flex">
+                      {item.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full border border-black/15 bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-black/60"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -83,6 +98,18 @@ export function Architecture() {
                 <div className="mt-1 text-xs text-black/55">
                   {item.detail}
                 </div>
+                {item.tags.length > 0 && (
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {item.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-black/15 bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-black/60"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>

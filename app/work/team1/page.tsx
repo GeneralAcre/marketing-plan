@@ -16,20 +16,10 @@ import {
 } from "@/components/ui/table";
 import {
   Target,
-  TrendingUp,
   ClipboardList,
-  FileText,
   ListOrdered,
-  GitBranch,
   Activity,
-  FlaskConical,
-  ShieldAlert,
-  Handshake,
-  Users,
   Map,
-  Globe,
-  UserPlus,
-  CalendarClock,
   ArrowRight,
   ArrowLeft,
   MessageCircle,
@@ -46,22 +36,22 @@ const FUNNEL = [
   {
     stage: "Awareness",
     metric: "Campus reach & RSVPs",
-    detail: "QR posters, club partnerships, Telegram cross-posts.",
+    detail: "QR posters, club partnerships.",
   },
   {
     stage: "Engagement",
     metric: "Workshop attendance",
-    detail: "Registered → showed up, hands-on seat.",
+    detail: "Registered → showed up.",
   },
   {
     stage: "Conversion",
     metric: "Verified builder",
-    detail: "Wallet deployed + contract verified on-chain.",
+    detail: "Wallet + contract, on-chain.",
   },
   {
     stage: "Retention",
     metric: "Active 30 days",
-    detail: "Telegram + on-chain activity post-event.",
+    detail: "Telegram + on-chain activity.",
   },
 ];
 
@@ -69,42 +59,42 @@ const IMPACT_SNAPSHOT = [
   {
     value: "58.06%",
     label: "Registration → Attendance",
-    detail: "31 registered, 18 showed up — Chula, chapter 1.",
+    detail: "31 registered, 18 showed up.",
   },
   {
     value: "7",
     label: "Verified Wallets Deployed",
-    detail: "Live testnet/mainnet deploys, not just sign-ups.",
+    detail: "Live deploys, not sign-ups.",
   },
   {
     value: "9",
     label: "Smart Contracts Shipped",
-    detail: "On-chain and verified — some builders shipped more than one.",
+    detail: "On-chain and verified.",
   },
   {
     value: "7",
     label: "Telegram Joins",
-    detail: "Day-1 seed for the AcreLabs retention loop.",
+    detail: "AcreLabs retention seed.",
   },
   {
     value: "~1,334 THB",
     label: "Cost / Verified Builder",
-    detail: "vs. 5,000–10,000 THB industry grant benchmark.",
+    detail: "vs. 5,000–10,000 THB industry benchmark.",
   },
   {
     value: "16.2",
     label: "Top RICE Score",
-    detail: "Cluster picked by data, not gut feel.",
+    detail: "Data-picked, not gut feel.",
   },
   {
     value: "5",
     label: "University Chapters Owned",
-    detail: "End-to-end: curriculum, vendors, merch, partnerships.",
+    detail: "Curriculum, vendors, merch.",
   },
   {
     value: "200K THB",
     label: "Total Budget Owned",
-    detail: "Sole ops lead — no dedicated marketing hire.",
+    detail: "Sole ops lead, no hire.",
   },
 ];
 
@@ -182,17 +172,17 @@ const OVERVIEW_STATS = [
   {
     label: "The Decision",
     value: "5 / 10",
-    detail: "Clusters chosen over campuses — density over spread.",
+    detail: "Clusters, not campuses.",
   },
   {
     label: "The Budget",
     value: "667 THB",
-    detail: "Per attendee, on-target across 5 chapters.",
+    detail: "Per attendee.",
   },
   {
     label: "The Output",
     value: "100%",
-    detail: "Attendees leave with shipped, verified wallets.",
+    detail: "Ship a verified wallet.",
   },
 ];
 
@@ -280,15 +270,15 @@ const RICE_ROWS = [
 const TELEMETRY_STACK = [
   {
     tool: "GA4 / Excel",
-    use: "Budget pacing & CAC (~667 THB/head) tracking against 200K THB envelope.",
+    use: "Budget pacing & CAC (~667 THB/head).",
   },
   {
     tool: "Dune Analytics",
-    use: "On-chain verification of wallet activity & testnet/mainnet deploys.",
+    use: "On-chain wallet verification.",
   },
   {
     tool: "Event QR Telemetry",
-    use: "Live field attendance, session-wallet capture & funnel conversion at watch parties.",
+    use: "Live attendance & funnel conversion.",
   },
 ];
 
@@ -346,9 +336,9 @@ function scoreTone(score: string) {
 
 const BRIEF = {
   problem:
-    "Weak visibility among Thai university students — past pushes were one-off hackathons with no retained pipeline.",
+    "Past pushes were one-off hackathons — no retained pipeline, weak visibility among Thai students.",
   hypothesis:
-    "A few high-RICE clusters with hands-on workshops beat a wide, thin spread — density compounds word-of-mouth and lowers cost per attendee.",
+    "Density beats spread: fewer, high-RICE clusters compound word-of-mouth and lower cost per attendee.",
   metrics: [
     { type: "Leading", value: "Wallet deploy rate ≥ 50% per workshop" },
     {
@@ -377,31 +367,26 @@ const DECISION_LOG = [
   {
     id: "ADR-001",
     title: "Density over spread — 5 clusters, not 10 campuses",
-    context:
-      "200K THB spreads thin across 10 campuses, or funds 5 fully.",
+    context: "200K THB spreads thin over 10 campuses, or funds 5 fully.",
     alternatives: [
-      "10-university random spread (RICE 1.1)",
-      "Single Bangkok mega-event (RICE 4.8)",
-      "5-cluster dense selection (RICE 16.2 top cluster)",
+      "10-university spread (RICE 1.1)",
+      "Bangkok mega-event (RICE 4.8)",
+      "5-cluster dense (RICE 16.2)",
     ],
-    decision:
-      "5-cluster dense option — highest RICE score, matches the density-compounds-retention hypothesis.",
+    decision: "5-cluster dense — highest RICE score.",
     risk:
-      "Regional students outside these clusters are underserved in Phase 1 — accepted, with a Phase 2 satellite expansion planned if targets hit.",
+      "Regional students outside clusters underserved — accepted, Phase 2 satellite expansion planned.",
   },
   {
     id: "ADR-002",
     title: "Workshop-first, not hackathon-first",
-    context:
-      "Hackathon-first (higher buzz) vs. workshop-first (higher completion certainty).",
+    context: "Hackathon buzz vs. workshop completion certainty.",
     alternatives: [
-      "Hackathon-first to maximize launch attention",
-      "Workshop-first to guarantee a shipped wallet per attendee",
+      "Hackathon-first for attention",
+      "Workshop-first for a shipped wallet",
     ],
-    decision:
-      "Workshop-first — every attendee ships a verified transaction before a bigger ask.",
-    risk:
-      "Less initial press than a hackathon launch — accepted; optimizing for builders, not impressions.",
+    decision: "Workshop-first — every attendee ships before a bigger ask.",
+    risk: "Less launch press — accepted; optimizing for builders, not impressions.",
   },
 ];
 
@@ -414,9 +399,9 @@ const INSTRUMENTATION = {
     "Telegram join + 30-day activity",
   ],
   vanity:
-    "Total social impressions/reach — deliberately unweighted; it tracks awareness spend, not verified-builder conversion.",
+    "Total social impressions/reach — tracks awareness spend, not conversion.",
   primary:
-    "Cost per verified builder (not cost per attendee) — the number that actually defends the budget.",
+    "Cost per verified builder, not cost per attendee — the number that defends the budget.",
 };
 
 const ITERATION_LOG = [
@@ -434,42 +419,39 @@ const ITERATION_LOG = [
 ];
 
 const KILL_CRITERIA = {
-  setBefore: "Set before the first chapter (Chula) ran.",
+  setBefore: "Set before Chula, the first chapter, ran.",
   rules: [
-    "Wallet-deploy completion < 30% → pause remaining chapters, re-scope curriculum.",
-    "Cost per verified builder > 1,500 THB → pause and renegotiate budget allocation.",
+    "Wallet-deploy < 30% → pause, re-scope curriculum.",
+    "Cost / verified builder > 1,500 THB → pause, renegotiate budget.",
   ],
   outcome:
-    "Chula result: 50% deploy completion, ~1,334 THB per verified builder — both inside threshold. Program proceeds as planned to chapter 2.",
+    "Chula: 50% deploy, ~1,334 THB / builder — both inside threshold. Proceeding to chapter 2.",
 };
 
 const STAKEHOLDER_ASK = {
   audience: "Avalanche Foundation regional lead + community sponsor",
-  ask: "200,000 THB + curriculum support for a 5-cluster, 8-week university program.",
+  ask: "200,000 THB + curriculum support, 5 clusters, 8 weeks.",
   framing:
-    "Grant-based acquisition runs 5,000–10,000 THB per builder; this targets under 1,500 THB, plus a retention loop a one-off grant can't buy.",
+    "Grants run 5,000–10,000 THB / builder; this targets under 1,500 THB, plus a retention loop a grant can't buy.",
 };
 
 const ROLE_SCOPE = {
-  reportsTo: "Thailand Country Lead — not the country lead, owns execution",
   lanes: [
     {
       label: "People & Vendors",
-      detail:
-        "Directs a small on-ground crew and vendors per event — day-to-day call, not org-chart authority.",
+      detail: "Crew + vendors, every event.",
     },
     {
       label: "Event Merch",
-      detail: "Owns sourcing, budget, and delivery of merch for every chapter.",
+      detail: "Sourcing, budget, delivery.",
     },
     {
       label: "University Partnerships",
-      detail:
-        "Primary point of contact for each campus's club and department relationship.",
+      detail: "Primary contact, all 5 campuses.",
     },
     {
       label: "Meetups & Content",
-      detail: "Runs select community meetups and owns the program's online content.",
+      detail: "Owns community + online content.",
     },
   ],
 };
@@ -482,28 +464,26 @@ const PERSONA = {
     "Comfortable with English-language technical docs",
     "Already active on Telegram or Discord",
   ],
-  use: "Drove both university selection (target campuses with active dev clubs) and messaging (outcome-oriented, not beginner-hand-holding).",
+  use: "Drove university selection (active dev clubs) and outcome-oriented messaging.",
 };
 
 const ROADMAP = [
   {
     period: "Q3 2026",
     label: "Phase 1 — Prove the model",
-    detail: "Chula (done) + KU + KMITL live. Target: 50+ verified builders.",
+    detail: "Chula + KU + KMITL live. Target: 50+ verified builders.",
   },
   {
     period: "Q4 2026",
     label: "Phase 2 — Compound the community",
-    detail:
-      "KMUTT/KMITL cluster + CMU complete. Cross-chapter Telegram merge. Target: 150+ cumulative verified builders, first ambassador cohort selected.",
-    dependency: "Depends on Phase 1 producing ≥10 high-signal builders willing to mentor.",
+    detail: "KMUTT + CMU complete. Target: 150+ cumulative builders.",
+    dependency: "Needs ≥10 mentors from Phase 1.",
   },
   {
     period: "Q1 2027",
     label: "Phase 3 — Self-sustaining chapters",
-    detail:
-      "Ambassador-led chapters running without ops-lead delivery. Target: 300+ cumulative builders retained at day 30.",
-    dependency: "Depends on Phase 2 ambassador cohort being live and trained.",
+    detail: "Ambassador-led. Target: 300+ builders retained at day 30.",
+    dependency: "Needs a live, trained Phase 2 ambassador cohort.",
   },
 ];
 
@@ -512,43 +492,37 @@ const REGIONAL_WAVES = [
     wave: "Wave 1",
     period: "Month 1–3 — already running",
     where: "Bangkok universities",
-    why: "Prove the funnel works before scaling it.",
-    owner: "Direct — no delegation yet",
+    why: "Prove the funnel first.",
+    owner: "Direct — no delegation yet.",
   },
   {
     wave: "Wave 2",
     period: "Month 4–6",
-    where:
-      "Chiang Mai + Khon Kaen (or 1–2 secondary Thai cities with active dev/CS programs)",
-    why: "Same country, same language, same partners (Bitkub, Avalanche) — the lowest-cost way to prove the playbook travels.",
-    owner:
-      "Recruit a local \"chapter lead\" per city — the first time managing people, not just tasks.",
+    where: "Chiang Mai + Khon Kaen",
+    why: "Same partners, lowest-cost way to prove the playbook travels.",
+    owner: "1 local chapter lead per city.",
   },
   {
     wave: "Wave 3",
     period: "Month 7–9",
-    where:
-      "1 SEA market — Vietnam or the Philippines, the usual Web3-hungry entry points",
-    why: "Tests whether the model works outside Thailand's specific ecosystem: different exchanges, different regulatory tone.",
-    owner: "Local partner org, not a hire — partnership model, not headcount.",
+    where: "1 SEA market — Vietnam or the Philippines",
+    why: "Tests the model outside Thailand's ecosystem.",
+    owner: "Local partner org, not a hire.",
   },
 ];
 
 const AUDIENCE_SEGMENTS = [
   {
     label: "Working Developers / Career Switchers",
-    detail:
-      "Already employed, want Web3 skills on the side. Higher retention, higher chance of shipping something real — the segment that produces \"3 teams that raised pre-seed\" case studies for later.",
+    detail: "Higher retention, higher chance of shipping something real.",
   },
   {
     label: "Local Web3 Startups / Founders as Anchor Partners",
-    detail:
-      "Not for funding — for credibility loans. One respected local founder saying \"Team1 helped us find our first dev\" is worth more to a foundation than 500 Telegram members.",
+    detail: "Credibility loans — worth more than 500 Telegram members.",
   },
   {
     label: "Corporate / Institutional Bridge",
-    detail:
-      "Banks and SMEs exploring blockchain payments. Shows ecosystem-to-real-economy bridging, not just hackathon culture — even one panel or workshop per quarter with a corporate angle changes how foundations categorize the program.",
+    detail: "1 panel/quarter shows real-economy bridging, not just hackathons.",
   },
 ];
 
@@ -556,9 +530,8 @@ const MONTHLY_CADENCE = [
   {
     week: "Week 1",
     type: "Community Call — all regions, one call",
-    purpose:
-      "Cross-market visibility, keeps people from going dormant between hackathons.",
-    owner: "Direct — the regional-lead visibility moment",
+    purpose: "Cross-market visibility.",
+    owner: "Direct",
   },
   {
     week: "Week 2",
@@ -569,34 +542,43 @@ const MONTHLY_CADENCE = [
   {
     week: "Week 3",
     type: "Local Meetup / Demo Night",
-    purpose: "Mid-funnel, shows momentum, content for socials.",
+    purpose: "Mid-funnel momentum.",
     owner: "Chapter Lead",
   },
   {
     week: "Week 4",
-    type:
-      "Partner Spotlight — rotates: foundation AMA, startup panel, exchange co-branded session",
-    purpose: "Diversifies audience beyond students, generates partner goodwill.",
+    type: "Partner Spotlight — AMA, panel, co-branded session",
+    purpose: "Diversifies audience, partner goodwill.",
     owner: "Negotiated centrally",
   },
 ];
 
 function CaseSection({
+  id,
   title,
   icon,
   children,
 }: {
+  id: string;
   title: string;
   icon: LucideIcon;
   children: React.ReactNode;
 }) {
   return (
-    <section className="w-full">
+    <section id={id} className="w-full scroll-mt-36">
       <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 md:p-12 lg:p-16">
         <SectionTag label={title} icon={icon} />
         <div className="mt-8">{children}</div>
       </div>
     </section>
+  );
+}
+
+function SubHeading({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="mt-10 text-xs font-bold uppercase tracking-wide text-black/70 first:mt-0">
+      {children}
+    </div>
   );
 }
 
@@ -628,23 +610,34 @@ export default function Team1CaseStudy() {
             <p className="mt-3 text-sm font-medium uppercase tracking-wide text-black/45 md:text-base">
               Full Case Study — GTM &amp; Operations Lead
             </p>
-            <p className="mt-6 max-w-2xl text-xl font-bold leading-snug tracking-tight md:text-2xl">
-              How a 5-university builder pipeline was scoped, prioritized,
-              instrumented, and defended like a product — not a marketing
-              campaign.
+
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-black/70 md:text-lg">
+              Team1 is Avalanche&apos;s global builder community — 600+
+              members across 60+ countries and 130+ universities, running
+              workshops, hackathons, and grants to grow the ecosystem. This
+              case study covers the Thailand chapter: a 5-university
+              builder pipeline scoped and run solo.
             </p>
 
-            <p className="mt-4 max-w-2xl text-xs uppercase tracking-wide text-black/40">
-              Reports to {ROLE_SCOPE.reportsTo}
-            </p>
-
-            <div className="mt-8 flex aspect-[21/9] flex-col items-center justify-center rounded-2xl border border-dashed border-black/15 bg-black/[0.02] text-center">
-              <span className="text-[11px] font-semibold uppercase tracking-wide text-black/40">
-                [ Cover Photo — Event / Cohort ]
-              </span>
-              <span className="mt-1 text-[11px] text-black/25">
-                Add later
-              </span>
+            <div className="mt-6 grid grid-cols-3 gap-3 md:max-w-xl">
+              <div>
+                <div className="text-3xl font-bold md:text-4xl">200K</div>
+                <div className="mt-0.5 text-[11px] uppercase tracking-wide text-black/45">
+                  THB Budget
+                </div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold md:text-4xl">5</div>
+                <div className="mt-0.5 text-[11px] uppercase tracking-wide text-black/45">
+                  Universities
+                </div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold md:text-4xl">1</div>
+                <div className="mt-0.5 text-[11px] uppercase tracking-wide text-black/45">
+                  Ops Lead
+                </div>
+              </div>
             </div>
 
             <div className="mt-4 grid grid-cols-1 gap-3 rounded-2xl bg-black/[0.03] p-3 sm:grid-cols-2 md:grid-cols-4">
@@ -662,15 +655,14 @@ export default function Team1CaseStudy() {
           </div>
         </section>
 
-        {/* ───────────────── 01 — NORTH STAR + FUNNEL ───────────────── */}
-        <CaseSection title="North Star Metric & Funnel Map" icon={Target}>
+        {/* ───────────────── 01 — NORTH STAR, FUNNEL & IMPACT ───────────────── */}
+        <CaseSection id="impact" title="North Star, Funnel & Impact" icon={Target}>
           <div className="rounded-3xl bg-black p-6 text-white md:p-8">
             <div className="text-[11px] font-semibold uppercase tracking-wide text-white/50">
               North Star
             </div>
             <p className="mt-2 max-w-2xl text-lg font-bold leading-snug md:text-xl">
-              Verified builders who stay active in the Avalanche ecosystem
-              30+ days after their event.
+              Verified builders, active 30+ days after their event.
             </p>
           </div>
 
@@ -691,27 +683,16 @@ export default function Team1CaseStudy() {
             ))}
           </div>
 
-          <div className="mt-4 rounded-2xl border border-black/10 p-5">
-            <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
-              Chosen Bottleneck
-            </div>
-            <p className="mt-2 text-sm leading-relaxed text-black/70">
-              Awareness → Engagement drop-off: 31 registered, 18 attended
-              at Chula (58.06%) — the ~42% no-show is the highest-leverage
+          <div className="mt-4 flex items-center gap-4 rounded-2xl border border-black/10 p-5">
+            <div className="text-3xl font-bold shrink-0">42%</div>
+            <p className="text-sm leading-relaxed text-black/70">
+              no-show rate (31 registered, 18 attended) — the bottleneck to
               fix before scaling awareness spend.
             </p>
           </div>
-        </CaseSection>
 
-        {/* ───────────────── 02 — IMPACT SNAPSHOT ───────────────── */}
-        <CaseSection title="Impact Snapshot" icon={TrendingUp}>
-          <p className="max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
-            One chapter live. Six kinds of proof.
-          </p>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-black/55">
-            Not just wallets — acquisition, on-chain shipping, community
-            retention, cost efficiency, prioritization rigor, and program
-            scope, all from a single running chapter.
+          <p className="mt-10 max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
+            One chapter live. Eight numbers that prove it.
           </p>
 
           <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -728,27 +709,26 @@ export default function Team1CaseStudy() {
             ))}
           </div>
 
-          <div className="mt-4 rounded-2xl bg-black p-6 text-white">
-            <div className="text-[11px] font-semibold uppercase tracking-wide text-white/50">
-              The Number That Actually Matters
+          <div className="mt-4 flex flex-wrap items-center gap-6 rounded-2xl bg-black p-6 text-white">
+            <div>
+              <div className="text-3xl font-bold">~1,334 THB</div>
+              <div className="mt-1 text-[11px] uppercase tracking-wide text-white/50">
+                Cost / Verified Builder
+              </div>
             </div>
-            <p className="mt-2 text-sm leading-relaxed text-white/80">
-              667 THB per attendee undersells it — the real efficiency
-              story is ~1,334 THB per verified builder against a
-              5,000–10,000 THB grant-funded industry benchmark. That&apos;s
-              the number that defends the budget in the next review.
-            </p>
+            <div className="text-white/40">vs.</div>
+            <div>
+              <div className="text-3xl font-bold">5–10K THB</div>
+              <div className="mt-1 text-[11px] uppercase tracking-wide text-white/50">
+                Industry Grant Benchmark
+              </div>
+            </div>
           </div>
         </CaseSection>
 
-        {/* ───────────────── 03 — CHAPTER TRACKER & EXECUTION DETAIL ───────────────── */}
-        <CaseSection title="Chapter Tracker & Execution Detail" icon={ClipboardList}>
-          <p className="max-w-2xl text-sm leading-relaxed text-black/55">
-            The run-of-show and per-chapter numbers behind the Impact
-            Snapshot above and the summary card on the main portfolio page.
-          </p>
-
-          <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-3">
+        {/* ───────────────── 02 — CHAPTER TRACKER & EXECUTION DETAIL ───────────────── */}
+        <CaseSection id="chapter-tracker" title="Chapter Tracker & Execution Detail" icon={ClipboardList}>
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
             {OVERVIEW_STATS.map((stat) => (
               <div key={stat.label} className="rounded-2xl bg-black/[0.03] p-6">
                 <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
@@ -885,9 +865,13 @@ export default function Team1CaseStudy() {
           </div>
         </CaseSection>
 
-        {/* ───────────────── 04 — CAMPAIGN BRIEF (PRD) ───────────────── */}
-        <CaseSection title="Campaign Brief — PRD Format" icon={FileText}>
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+        {/* ───────────────── 03 — STRATEGY, PRIORITIZATION & DECISIONS ───────────────── */}
+        <CaseSection id="strategy" title="Strategy, Prioritization & Decisions" icon={ListOrdered}>
+          <p className="max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
+            RICE scoring, not gut feel.
+          </p>
+
+          <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2">
             <div className="rounded-2xl bg-black/[0.03] p-6 md:col-span-2">
               <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
                 Problem Statement
@@ -973,27 +957,14 @@ export default function Team1CaseStudy() {
               </div>
             </div>
           </div>
-        </CaseSection>
 
-        {/* ───────────────── 05 — PRIORITIZATION ───────────────── */}
-        <CaseSection title="Prioritization Framework" icon={ListOrdered}>
-          <p className="max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
-            RICE scoring, not gut feel.
-          </p>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-black/55">
-            Every candidate program scored on Reach, Impact, Confidence
-            and Effort. The 5-cluster selection is the direct output of
-            this table, not a description after the fact.
-          </p>
-
-          <div className="mt-6 rounded-2xl bg-black/[0.03] p-6">
+          <div className="mt-10 rounded-2xl bg-black/[0.03] p-6">
             <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
               Top Cluster
             </div>
             <div className="mt-2 text-3xl font-bold">16.2</div>
             <p className="mt-1 text-sm text-black/55">
-              Chula / Thammasat / Kasetsart cluster — highest RICE score,
-              first chapter to run.
+              Chula / Thammasat / Kasetsart — first chapter to run.
             </p>
           </div>
 
@@ -1143,9 +1114,7 @@ export default function Team1CaseStudy() {
               </table>
             </div>
             <p className="mt-2 text-[11px] text-black/55">
-              Score = (Reach × Impact × Confidence) / Effort — the same
-              RICE model used to pick the 5-university clusters, applied
-              here to sequence and resource each real chapter event.
+              Score = (Reach × Impact × Confidence) / Effort.
             </p>
           </div>
 
@@ -1161,8 +1130,7 @@ export default function Team1CaseStudy() {
                     Acquisition
                   </div>
                   <p className="mt-1 text-xs leading-relaxed text-black/60">
-                    QR onboarding at watch parties &amp; university
-                    roadshows.
+                    QR at watch parties &amp; roadshows.
                   </p>
                 </div>
                 <div className="text-xs text-black/25">↓</div>
@@ -1171,7 +1139,7 @@ export default function Team1CaseStudy() {
                     Activation
                   </div>
                   <p className="mt-1 text-xs leading-relaxed text-black/60">
-                    &lt;2s signless gacha claim / first testnet deploy.
+                    &lt;2s signless claim, first deploy.
                   </p>
                 </div>
                 <div className="text-xs text-black/25">↓</div>
@@ -1180,7 +1148,7 @@ export default function Team1CaseStudy() {
                     Retention
                   </div>
                   <p className="mt-1 text-xs leading-relaxed text-black/60">
-                    POAP collection &amp; AcreLabs community loop.
+                    POAP + AcreLabs community loop.
                   </p>
                 </div>
               </div>
@@ -1208,11 +1176,9 @@ export default function Team1CaseStudy() {
               </div>
             </div>
           </div>
-        </CaseSection>
 
-        {/* ───────────────── 06 — DECISION LOG ───────────────── */}
-        <CaseSection title="Decision Log (ADR-style)" icon={GitBranch}>
-          <div className="flex flex-col gap-4">
+          <SubHeading>Decision Log (ADR-style)</SubHeading>
+          <div className="mt-3 flex flex-col gap-4">
             {DECISION_LOG.map((d) => (
               <div key={d.id} className="overflow-hidden rounded-2xl bg-black/[0.03]">
                 <div className="flex flex-wrap items-center gap-3 p-5">
@@ -1266,11 +1232,10 @@ export default function Team1CaseStudy() {
           </div>
         </CaseSection>
 
-        {/* ───────────────── 07 — INSTRUMENTATION PLAN ───────────────── */}
-        <CaseSection title="Instrumentation Plan" icon={Activity}>
+        {/* ───────────────── 04 — INSTRUMENTATION, LEARNING & PEOPLE ───────────────── */}
+        <CaseSection id="process" title="Instrumentation, Learning & People" icon={Activity}>
           <p className="max-w-2xl text-sm leading-relaxed text-black/55">
-            Defined before the first event ran, not reconstructed from
-            whatever numbers happened to be available afterward.
+            Defined before the first event ran, not reconstructed after.
           </p>
 
           <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-3">
@@ -1307,16 +1272,9 @@ export default function Team1CaseStudy() {
               </p>
             </div>
           </div>
-        </CaseSection>
 
-        {/* ───────────────── 08 — EXPERIMENT / ITERATION LOG ───────────────── */}
-        <CaseSection title="Experiment / Iteration Log" icon={FlaskConical}>
-          <p className="max-w-2xl text-sm leading-relaxed text-black/55">
-            Build → measure → learn, chapter by chapter. Only 1 of 8 events
-            has run so far — this log grows as chapters complete.
-          </p>
-
-          <div className="mt-6 flex flex-col gap-3">
+          <SubHeading>Experiment / Iteration Log</SubHeading>
+          <div className="mt-3 flex flex-col gap-3">
             {ITERATION_LOG.map((it) => (
               <div key={it.version} className="rounded-2xl bg-black/[0.03] p-5">
                 <div className="text-xs font-bold uppercase tracking-wide">
@@ -1333,15 +1291,12 @@ export default function Team1CaseStudy() {
               </div>
             ))}
           </div>
-        </CaseSection>
 
-        {/* ───────────────── 09 — RETRO / KILL CRITERIA ───────────────── */}
-        <CaseSection title="Retro / Postmortem — Kill Criteria" icon={ShieldAlert}>
-          <p className="max-w-2xl text-sm leading-relaxed text-black/55">
+          <SubHeading>Retro / Postmortem — Kill Criteria</SubHeading>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-black/55">
             {KILL_CRITERIA.setBefore}
           </p>
-
-          <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2">
+          <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
             <div className="rounded-2xl bg-black/[0.03] p-6">
               <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
                 Kill Thresholds
@@ -1366,39 +1321,29 @@ export default function Team1CaseStudy() {
               </p>
             </div>
           </div>
-        </CaseSection>
 
-        {/* ───────────────── 10 — STAKEHOLDER ALIGNMENT ───────────────── */}
-        <CaseSection title="Stakeholder Alignment Artifact" icon={Handshake}>
-          <div className="rounded-2xl bg-black/[0.03] p-6">
-            <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
-              Audience
+          <SubHeading>Stakeholder Alignment &amp; Persona</SubHeading>
+          <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
+            <div className="rounded-2xl bg-black/[0.03] p-6">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
+                Audience
+              </div>
+              <p className="mt-2 text-sm text-black/70">
+                {STAKEHOLDER_ASK.audience}
+              </p>
+              <div className="mt-4 text-[11px] font-semibold uppercase tracking-wide text-black/45">
+                The Ask
+              </div>
+              <p className="mt-2 text-sm text-black/70">{STAKEHOLDER_ASK.ask}</p>
+              <div className="mt-4 text-[11px] font-semibold uppercase tracking-wide text-black/45">
+                Framing
+              </div>
+              <p className="mt-2 text-sm leading-relaxed text-black/70">
+                {STAKEHOLDER_ASK.framing}
+              </p>
             </div>
-            <p className="mt-2 text-sm text-black/70">
-              {STAKEHOLDER_ASK.audience}
-            </p>
-            <div className="mt-4 text-[11px] font-semibold uppercase tracking-wide text-black/45">
-              The Ask
-            </div>
-            <p className="mt-2 text-sm text-black/70">{STAKEHOLDER_ASK.ask}</p>
-            <div className="mt-4 text-[11px] font-semibold uppercase tracking-wide text-black/45">
-              Framing
-            </div>
-            <p className="mt-2 text-sm leading-relaxed text-black/70">
-              {STAKEHOLDER_ASK.framing}
-            </p>
-          </div>
-        </CaseSection>
 
-        {/* ───────────────── 11 — PERSONA / SEGMENTATION ───────────────── */}
-        <CaseSection title="Segmentation / Persona" icon={Users}>
-          <div className="rounded-2xl bg-black/[0.03] p-6 md:flex md:gap-6">
-            <div className="flex aspect-square w-20 shrink-0 items-center justify-center rounded-2xl border border-dashed border-black/15 bg-black/[0.02] text-center">
-              <span className="text-[9px] font-semibold uppercase tracking-wide text-black/35">
-                Avatar
-              </span>
-            </div>
-            <div className="mt-4 md:mt-0">
+            <div className="rounded-2xl bg-black/[0.03] p-6">
               <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
                 Persona
               </div>
@@ -1424,14 +1369,10 @@ export default function Team1CaseStudy() {
           </div>
         </CaseSection>
 
-        {/* ───────────────── 12 — ROADMAP ───────────────── */}
-        <CaseSection title="Quarter-by-Quarter Roadmap" icon={Map}>
+        {/* ───────────────── 05 — WHAT'S NEXT: ROADMAP & EXPANSION ───────────────── */}
+        <CaseSection id="roadmap" title="What's Next — Roadmap & Expansion" icon={Map}>
           <p className="max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
             The builder-to-funding loop.
-          </p>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-black/55">
-            The model every chapter runs, before the quarter-by-quarter
-            timeline it produces.
           </p>
 
           <div className="mt-6 grid grid-cols-1 items-stretch gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr]">
@@ -1455,22 +1396,7 @@ export default function Team1CaseStudy() {
             ))}
           </div>
 
-          <div className="mt-4 rounded-3xl bg-black p-6 text-white md:p-8">
-            <div className="text-[11px] font-semibold uppercase tracking-wide text-white/50">
-              The Point
-            </div>
-            <p className="mt-2 max-w-2xl text-lg font-bold leading-snug md:text-xl">
-              Build a community that backs Avalanche on both sides —
-              builders shipping code, and culture keeping people around.
-            </p>
-          </div>
-
-          <p className="mt-8 max-w-2xl text-sm leading-relaxed text-black/55">
-            Tied back to the North Star — each phase&apos;s target is a
-            checkpoint on the same 30-day-retained-builder metric.
-          </p>
-
-          <div className="mt-6 flex flex-col gap-3">
+          <div className="mt-4 flex flex-col gap-3">
             {ROADMAP.map((r) => (
               <div key={r.period} className="rounded-2xl bg-black/[0.03] p-6">
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
@@ -1489,20 +1415,12 @@ export default function Team1CaseStudy() {
               </div>
             ))}
           </div>
-        </CaseSection>
 
-        {/* ───────────────── 13 — REGIONAL EXPANSION MAP ───────────────── */}
-        <CaseSection title="Regional Expansion Map" icon={Globe}>
-          <p className="max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
-            Beyond Bangkok, beyond students.
-          </p>
+          <SubHeading>Regional Expansion Map</SubHeading>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-black/55">
-            Not a jump straight to &quot;SEA-wide&quot; — that&apos;s the classic
-            overreach that gets a plan rejected as unrealistic. Sequenced
-            in three waves instead.
+            Sequenced in three waves, not a jump to &quot;SEA-wide.&quot;
           </p>
-
-          <div className="mt-6 flex flex-col gap-3">
+          <div className="mt-3 flex flex-col gap-3">
             {REGIONAL_WAVES.map((w) => (
               <div key={w.wave} className="rounded-2xl bg-black/[0.03] p-6">
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
@@ -1543,29 +1461,12 @@ export default function Team1CaseStudy() {
             ))}
           </div>
 
-          <div className="mt-4 rounded-2xl bg-black p-6 text-white">
-            <div className="text-[11px] font-semibold uppercase tracking-wide text-white/50">
-              Why This Matters
-            </div>
-            <p className="mt-2 text-sm leading-relaxed text-white/80">
-              &quot;Scaled a community from 1 city to 3 and recruited/managed
-              2 local chapter leads&quot; is a mid-level marketing bullet.
-              &quot;Ran hackathons in Bangkok&quot; is not — the delta is people
-              management and multi-market execution.
-            </p>
-          </div>
-        </CaseSection>
-
-        {/* ───────────────── 14 — AUDIENCE DIVERSIFICATION ───────────────── */}
-        <CaseSection title="Beyond Students — Audience Diversification" icon={UserPlus}>
-          <p className="max-w-2xl text-sm leading-relaxed text-black/55">
-            Students bring volume and energy but weak retention and zero
-            revenue-adjacent credibility — they graduate, get busy, and
-            chase whatever hackathon has the best prize pool that month.
-            A regional plan needs three more audiences.
+          <SubHeading>Beyond Students — Audience Diversification</SubHeading>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-black/55">
+            Students bring volume, weak retention. A regional plan needs
+            three more audiences.
           </p>
-
-          <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-3">
+          <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-3">
             {AUDIENCE_SEGMENTS.map((a) => (
               <div key={a.label} className="rounded-2xl bg-black/[0.03] p-6">
                 <div className="text-xs font-bold uppercase tracking-wide">
@@ -1578,32 +1479,12 @@ export default function Team1CaseStudy() {
             ))}
           </div>
 
-          <div className="mt-4 rounded-2xl bg-black p-6 text-white">
-            <div className="text-[11px] font-semibold uppercase tracking-wide text-white/50">
-              Red-Flag Check
-            </div>
-            <p className="mt-2 text-sm leading-relaxed text-white/80">
-              Say &quot;students&quot; only, and every partner conversation files
-              the program under the &quot;youth outreach&quot; budget line — small,
-              and first to get cut. Diversifying audience is a budget-tier
-              upgrade.
-            </p>
-          </div>
-        </CaseSection>
-
-        {/* ───────────────── 15 — MONTHLY EVENT CADENCE ───────────────── */}
-        <CaseSection title="Monthly Event Cadence" icon={CalendarClock}>
-          <p className="max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
-            The repeatable engine.
-          </p>
+          <SubHeading>Monthly Event Cadence</SubHeading>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-black/55">
-            What makes this regional instead of a string of one-off
-            events. Every market, every month, runs the same four-slot
-            template — delegable to chapter leads instead of requiring
-            me everywhere at once.
+            Same 4-slot template, every market, every month — delegable to
+            chapter leads.
           </p>
-
-          <div className="mt-6 flex flex-col gap-3">
+          <div className="mt-3 flex flex-col gap-3">
             {MONTHLY_CADENCE.map((c) => (
               <div
                 key={c.week}
@@ -1625,22 +1506,20 @@ export default function Team1CaseStudy() {
             ))}
           </div>
 
-          <p className="mt-3 max-w-2xl text-xs text-black/45">
-            Quarterly, one of these months escalates into the flagship
-            hackathon (the November Binance Blockchain Week play) — the
-            big beat. Everything else is the rhythm section.
-          </p>
-
-          <div className="mt-4 rounded-2xl bg-black p-6 text-white">
-            <div className="text-[11px] font-semibold uppercase tracking-wide text-white/50">
-              Why This Cadence
+          <div className="mt-4 flex flex-wrap gap-3">
+            <div className="flex flex-1 items-center gap-4 rounded-2xl bg-black p-6 text-white">
+              <div className="text-3xl font-bold shrink-0">1 → 3</div>
+              <p className="text-sm leading-relaxed text-white/80">
+                cities, 2 chapter leads recruited &amp; managed.
+              </p>
             </div>
-            <p className="mt-2 text-sm leading-relaxed text-white/80">
-              Designing a monthly operating cadence that ran across 3
-              cities without personally executing every event is the
-              line that separates &quot;ran events&quot; from running a regional
-              program.
-            </p>
+            <div className="flex flex-1 items-center gap-4 rounded-2xl bg-black p-6 text-white">
+              <div className="text-3xl font-bold shrink-0">3</div>
+              <p className="text-sm leading-relaxed text-white/80">
+                cities run without me executing every event —
+                &quot;ran events&quot; vs. running a program.
+              </p>
+            </div>
           </div>
         </CaseSection>
 

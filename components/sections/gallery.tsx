@@ -9,12 +9,12 @@ const EVENT_PHOTOS = [
   {
     src: "/event-picture/University-1.JPG",
     alt: "University chapter kickoff on campus",
-    caption: "University Chapter",
+    caption: "University Meetup",
   },
   {
     src: "/event-picture/University-2.jpg",
     alt: "University chapter session on campus",
-    caption: "University Chapter",
+    caption: "University Workshop",
   },
   {
     src: "/event-picture/Meetup-1.JPG",
@@ -24,7 +24,7 @@ const EVENT_PHOTOS = [
   {
     src: "/event-picture/Meetup-2.jpeg",
     alt: "Community meetup — demo night",
-    caption: "Demo Night",
+    caption: "Community Meetup",
   },
   {
     src: "/event-picture/Meetup-4.jpg",
@@ -39,7 +39,7 @@ const EVENT_PHOTOS = [
   {
     src: "/event-picture/Padel-1.JPG",
     alt: "Team offsite — padel session",
-    caption: "Team Offsite",
+    caption: "Community Meetup",
   },
 ];
 
