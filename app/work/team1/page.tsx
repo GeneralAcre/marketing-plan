@@ -211,6 +211,139 @@ const EXECUTION_PHASES = [
   },
 ];
 
+const RICE_ROWS = [
+  {
+    program: "Chula — Avalanche Builder Workshop & Networking",
+    reach: 7,
+    impact: 8,
+    confidence: "95%",
+    effort: 5,
+    score: "10.6",
+    status: "done" as const,
+  },
+  {
+    program: "Thailand Chapter Launch",
+    reach: 8,
+    impact: 6,
+    confidence: "70%",
+    effort: 3,
+    score: "11.2",
+    status: "scheduled" as const,
+  },
+  {
+    program: "Codebase Hackathon — Chula Edition",
+    reach: 6,
+    impact: 9,
+    confidence: "60%",
+    effort: 7,
+    score: "4.6",
+    status: "scheduled" as const,
+  },
+  {
+    program: "KU — Introduction to Blockchain",
+    reach: 7,
+    impact: 7,
+    confidence: "80%",
+    effort: 5,
+    score: "7.8",
+    status: "scheduled" as const,
+  },
+  {
+    program: "First Community Call",
+    reach: 9,
+    impact: 4,
+    confidence: "75%",
+    effort: 2,
+    score: "13.5",
+    status: "scheduled" as const,
+  },
+  {
+    program: "KMITL — Introduction to Blockchain",
+    reach: 7,
+    impact: 7,
+    confidence: "80%",
+    effort: 5,
+    score: "7.8",
+    status: "scheduled" as const,
+  },
+  {
+    program: "TUBC — Vibe Code Your First Avalanche dApp",
+    reach: 6,
+    impact: 8,
+    confidence: "65%",
+    effort: 6,
+    score: "5.2",
+    status: "scheduled" as const,
+  },
+];
+
+const TELEMETRY_STACK = [
+  {
+    tool: "GA4 / Excel",
+    use: "Budget pacing & CAC (~667 THB/head) tracking against 200K THB envelope.",
+  },
+  {
+    tool: "Dune Analytics",
+    use: "On-chain verification of wallet activity & testnet/mainnet deploys.",
+  },
+  {
+    tool: "Event QR Telemetry",
+    use: "Live field attendance, session-wallet capture & funnel conversion at watch parties.",
+  },
+];
+
+const GROWTH_LOOP = [
+  {
+    order: "01",
+    title: "University",
+    detail: "Go on campus, teach Avalanche & Web3 fundamentals.",
+  },
+  {
+    order: "02",
+    title: "Hackathon",
+    detail: "Host a hackathon — students build a real project.",
+  },
+  {
+    order: "03",
+    title: "Funding",
+    detail: "Best projects get funded by Avalanche to keep building.",
+  },
+  {
+    order: "04",
+    title: "Community",
+    detail: "Builders stay in the loop as the next chapter's mentors.",
+  },
+];
+
+// RICE table heat-map bands — tuned to this dataset's actual spread, not a generic 0–100 scale.
+function reachTone(n: number) {
+  if (n >= 8) return "bg-blue-600 text-white";
+  if (n >= 6) return "bg-blue-200 text-black";
+  return "bg-blue-50 text-black/70";
+}
+function impactTone(n: number) {
+  if (n >= 7) return "bg-blue-600 text-white";
+  if (n >= 5) return "bg-blue-200 text-black";
+  return "bg-blue-50 text-black/70";
+}
+function confidenceTone(pct: string) {
+  const n = Number.parseInt(pct, 10);
+  if (n >= 80) return "bg-blue-600 text-white";
+  if (n >= 60) return "bg-blue-200 text-black";
+  return "bg-blue-50 text-black/70";
+}
+function effortTone(n: number) {
+  if (n >= 7) return "bg-neutral-400 text-white";
+  if (n >= 5) return "bg-neutral-200 text-black";
+  return "bg-neutral-100 text-black/70";
+}
+function scoreTone(score: string) {
+  const n = Number.parseFloat(score);
+  if (n >= 10) return "bg-orange-500 text-white";
+  if (n >= 5) return "bg-orange-200 text-black";
+  return "bg-orange-50 text-black/70";
+}
+
 const BRIEF = {
   problem:
     "Weak visibility among Thai university students — past pushes were one-off hackathons with no retained pipeline.",
@@ -449,12 +582,10 @@ const MONTHLY_CADENCE = [
 ];
 
 function CaseSection({
-  index,
   title,
   icon,
   children,
 }: {
-  index: string;
   title: string;
   icon: LucideIcon;
   children: React.ReactNode;
@@ -462,7 +593,7 @@ function CaseSection({
   return (
     <section className="w-full">
       <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 md:p-12 lg:p-16">
-        <SectionTag label={`${index} — ${title}`} icon={icon} />
+        <SectionTag label={title} icon={icon} />
         <div className="mt-8">{children}</div>
       </div>
     </section>
@@ -532,7 +663,7 @@ export default function Team1CaseStudy() {
         </section>
 
         {/* ───────────────── 01 — NORTH STAR + FUNNEL ───────────────── */}
-        <CaseSection index="01" title="North Star Metric & Funnel Map" icon={Target}>
+        <CaseSection title="North Star Metric & Funnel Map" icon={Target}>
           <div className="rounded-3xl bg-black p-6 text-white md:p-8">
             <div className="text-[11px] font-semibold uppercase tracking-wide text-white/50">
               North Star
@@ -573,7 +704,7 @@ export default function Team1CaseStudy() {
         </CaseSection>
 
         {/* ───────────────── 02 — IMPACT SNAPSHOT ───────────────── */}
-        <CaseSection index="02" title="Impact Snapshot" icon={TrendingUp}>
+        <CaseSection title="Impact Snapshot" icon={TrendingUp}>
           <p className="max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
             One chapter live. Six kinds of proof.
           </p>
@@ -611,7 +742,7 @@ export default function Team1CaseStudy() {
         </CaseSection>
 
         {/* ───────────────── 03 — CHAPTER TRACKER & EXECUTION DETAIL ───────────────── */}
-        <CaseSection index="03" title="Chapter Tracker & Execution Detail" icon={ClipboardList}>
+        <CaseSection title="Chapter Tracker & Execution Detail" icon={ClipboardList}>
           <p className="max-w-2xl text-sm leading-relaxed text-black/55">
             The run-of-show and per-chapter numbers behind the Impact
             Snapshot above and the summary card on the main portfolio page.
@@ -755,7 +886,7 @@ export default function Team1CaseStudy() {
         </CaseSection>
 
         {/* ───────────────── 04 — CAMPAIGN BRIEF (PRD) ───────────────── */}
-        <CaseSection index="04" title="Campaign Brief — PRD Format" icon={FileText}>
+        <CaseSection title="Campaign Brief — PRD Format" icon={FileText}>
           <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
             <div className="rounded-2xl bg-black/[0.03] p-6 md:col-span-2">
               <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
@@ -845,18 +976,14 @@ export default function Team1CaseStudy() {
         </CaseSection>
 
         {/* ───────────────── 05 — PRIORITIZATION ───────────────── */}
-        <CaseSection index="05" title="Prioritization Framework" icon={ListOrdered}>
+        <CaseSection title="Prioritization Framework" icon={ListOrdered}>
           <p className="max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
             RICE scoring, not gut feel.
           </p>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-black/55">
-            The full RICE table — 5 candidate programs scored on Reach,
-            Impact, Confidence and Effort — lives on the{" "}
-            <Link href="/#frameworks" className="underline hover:no-underline">
-              main portfolio page
-            </Link>
-            . The 5-cluster selection below is the direct output of that
-            table, not a description after the fact.
+            Every candidate program scored on Reach, Impact, Confidence
+            and Effort. The 5-cluster selection is the direct output of
+            this table, not a description after the fact.
           </p>
 
           <div className="mt-6 rounded-2xl bg-black/[0.03] p-6">
@@ -869,10 +996,222 @@ export default function Team1CaseStudy() {
               first chapter to run.
             </p>
           </div>
+
+          <div className="mt-4 rounded-2xl bg-black/[0.03] p-6">
+            <div className="flex flex-wrap items-baseline justify-between gap-3">
+              <h3 className="text-xs font-bold uppercase tracking-wide">
+                RICE Prioritization — Team1 Event Line-Up
+              </h3>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[10px] text-black/50">
+                <div className="flex items-center gap-2">
+                  <span className="font-semibold uppercase tracking-wide text-black/40">
+                    R · I · C
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <span className="size-2.5 rounded-sm bg-blue-50" />
+                    Low
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <span className="size-2.5 rounded-sm bg-blue-200" />
+                    Mid
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <span className="size-2.5 rounded-sm bg-blue-600" />
+                    High
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="font-semibold uppercase tracking-wide text-black/40">
+                    Score
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <span className="size-2.5 rounded-sm bg-orange-50" />
+                    &lt;5
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <span className="size-2.5 rounded-sm bg-orange-200" />
+                    5–9.9
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <span className="size-2.5 rounded-sm bg-orange-500" />
+                    10+
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile: stacked cards — every value visible at once, no horizontal scroll */}
+            <div className="mt-4 flex flex-col gap-3 md:hidden">
+              {RICE_ROWS.map((row) => (
+                <div
+                  key={row.program}
+                  className="rounded-xl bg-white p-4 ring-1 ring-black/8"
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="text-xs font-medium">{row.program}</div>
+                    {row.status === "done" ? (
+                      <Badge className="h-auto shrink-0 px-2 py-0.5 text-[10px] font-semibold">
+                        Live
+                      </Badge>
+                    ) : (
+                      <Badge
+                        variant="outline"
+                        className="h-auto shrink-0 px-2 py-0.5 text-[10px] font-medium text-black/45"
+                      >
+                        Scheduled
+                      </Badge>
+                    )}
+                  </div>
+                  <div className="mt-3 grid grid-cols-5 gap-1.5">
+                    {[
+                      { label: "R", value: row.reach, tone: reachTone(row.reach) },
+                      { label: "I", value: row.impact, tone: impactTone(row.impact) },
+                      { label: "C", value: row.confidence, tone: confidenceTone(row.confidence) },
+                      { label: "E", value: row.effort, tone: effortTone(row.effort) },
+                      { label: "Score", value: row.score, tone: scoreTone(row.score) },
+                    ].map((cell) => (
+                      <div
+                        key={cell.label}
+                        className={`rounded-lg py-1.5 text-center ${cell.tone}`}
+                      >
+                        <div className="text-[8px] font-semibold uppercase tracking-wide opacity-70">
+                          {cell.label}
+                        </div>
+                        <div className="text-xs font-bold tabular-nums">
+                          {cell.value}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Desktop / tablet: full table */}
+            <div className="mt-4 hidden overflow-x-auto rounded-xl ring-1 ring-black/8 md:block">
+              <table className="w-full min-w-[560px] border-collapse text-left text-xs">
+                <thead>
+                  <tr className="bg-white">
+                    {["Event", "R", "I", "C", "E", "Score", "Status"].map((h) => (
+                      <th
+                        key={h}
+                        className="px-3 py-2 text-[10px] font-semibold uppercase tracking-wide text-black/45"
+                      >
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {RICE_ROWS.map((row) => (
+                    <tr key={row.program} className="border-t border-black/8 bg-white">
+                      <td className="px-3 py-2 font-medium">
+                        {row.program}
+                      </td>
+                      <td className={`px-3 py-2 text-center tabular-nums ${reachTone(row.reach)}`}>
+                        {row.reach}
+                      </td>
+                      <td className={`px-3 py-2 text-center tabular-nums ${impactTone(row.impact)}`}>
+                        {row.impact}
+                      </td>
+                      <td className={`px-3 py-2 text-center tabular-nums ${confidenceTone(row.confidence)}`}>
+                        {row.confidence}
+                      </td>
+                      <td className={`px-3 py-2 text-center tabular-nums ${effortTone(row.effort)}`}>
+                        {row.effort}
+                      </td>
+                      <td className={`px-3 py-2 text-center font-bold tabular-nums ${scoreTone(row.score)}`}>
+                        {row.score}
+                      </td>
+                      <td className="px-3 py-2">
+                        {row.status === "done" ? (
+                          <Badge className="h-auto px-2 py-0.5 text-[10px] font-semibold">
+                            Live
+                          </Badge>
+                        ) : (
+                          <Badge
+                            variant="outline"
+                            className="h-auto px-2 py-0.5 text-[10px] font-medium text-black/45"
+                          >
+                            Scheduled
+                          </Badge>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-2 text-[11px] text-black/55">
+              Score = (Reach × Impact × Confidence) / Effort — the same
+              RICE model used to pick the 5-university clusters, applied
+              here to sequence and resource each real chapter event.
+            </p>
+          </div>
+
+          <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+            {/* AARRR */}
+            <div className="rounded-2xl bg-black/[0.03] p-6">
+              <h3 className="text-xs font-bold uppercase tracking-wide">
+                AARRR Funnel Mapping
+              </h3>
+              <div className="mt-4 flex flex-col gap-3">
+                <div>
+                  <div className="text-[11px] font-semibold uppercase tracking-wide">
+                    Acquisition
+                  </div>
+                  <p className="mt-1 text-xs leading-relaxed text-black/60">
+                    QR onboarding at watch parties &amp; university
+                    roadshows.
+                  </p>
+                </div>
+                <div className="text-xs text-black/25">↓</div>
+                <div>
+                  <div className="text-[11px] font-semibold uppercase tracking-wide">
+                    Activation
+                  </div>
+                  <p className="mt-1 text-xs leading-relaxed text-black/60">
+                    &lt;2s signless gacha claim / first testnet deploy.
+                  </p>
+                </div>
+                <div className="text-xs text-black/25">↓</div>
+                <div>
+                  <div className="text-[11px] font-semibold uppercase tracking-wide">
+                    Retention
+                  </div>
+                  <p className="mt-1 text-xs leading-relaxed text-black/60">
+                    POAP collection &amp; AcreLabs community loop.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Telemetry */}
+            <div className="rounded-2xl bg-black/[0.03] p-6">
+              <h3 className="text-xs font-bold uppercase tracking-wide">
+                Unit Econ &amp; Telemetry Stack
+              </h3>
+              <div className="mt-4 flex flex-col gap-4">
+                {TELEMETRY_STACK.map((item) => (
+                  <div
+                    key={item.tool}
+                    className="rounded-xl border-l-2 border-black/20 bg-white p-3"
+                  >
+                    <div className="text-xs font-bold">
+                      {item.tool}
+                    </div>
+                    <p className="mt-1 text-xs leading-relaxed text-black/60">
+                      {item.use}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </CaseSection>
 
         {/* ───────────────── 06 — DECISION LOG ───────────────── */}
-        <CaseSection index="06" title="Decision Log (ADR-style)" icon={GitBranch}>
+        <CaseSection title="Decision Log (ADR-style)" icon={GitBranch}>
           <div className="flex flex-col gap-4">
             {DECISION_LOG.map((d) => (
               <div key={d.id} className="overflow-hidden rounded-2xl bg-black/[0.03]">
@@ -928,7 +1267,7 @@ export default function Team1CaseStudy() {
         </CaseSection>
 
         {/* ───────────────── 07 — INSTRUMENTATION PLAN ───────────────── */}
-        <CaseSection index="07" title="Instrumentation Plan" icon={Activity}>
+        <CaseSection title="Instrumentation Plan" icon={Activity}>
           <p className="max-w-2xl text-sm leading-relaxed text-black/55">
             Defined before the first event ran, not reconstructed from
             whatever numbers happened to be available afterward.
@@ -971,7 +1310,7 @@ export default function Team1CaseStudy() {
         </CaseSection>
 
         {/* ───────────────── 08 — EXPERIMENT / ITERATION LOG ───────────────── */}
-        <CaseSection index="08" title="Experiment / Iteration Log" icon={FlaskConical}>
+        <CaseSection title="Experiment / Iteration Log" icon={FlaskConical}>
           <p className="max-w-2xl text-sm leading-relaxed text-black/55">
             Build → measure → learn, chapter by chapter. Only 1 of 8 events
             has run so far — this log grows as chapters complete.
@@ -997,7 +1336,7 @@ export default function Team1CaseStudy() {
         </CaseSection>
 
         {/* ───────────────── 09 — RETRO / KILL CRITERIA ───────────────── */}
-        <CaseSection index="09" title="Retro / Postmortem — Kill Criteria" icon={ShieldAlert}>
+        <CaseSection title="Retro / Postmortem — Kill Criteria" icon={ShieldAlert}>
           <p className="max-w-2xl text-sm leading-relaxed text-black/55">
             {KILL_CRITERIA.setBefore}
           </p>
@@ -1030,7 +1369,7 @@ export default function Team1CaseStudy() {
         </CaseSection>
 
         {/* ───────────────── 10 — STAKEHOLDER ALIGNMENT ───────────────── */}
-        <CaseSection index="10" title="Stakeholder Alignment Artifact" icon={Handshake}>
+        <CaseSection title="Stakeholder Alignment Artifact" icon={Handshake}>
           <div className="rounded-2xl bg-black/[0.03] p-6">
             <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
               Audience
@@ -1052,7 +1391,7 @@ export default function Team1CaseStudy() {
         </CaseSection>
 
         {/* ───────────────── 11 — PERSONA / SEGMENTATION ───────────────── */}
-        <CaseSection index="11" title="Segmentation / Persona" icon={Users}>
+        <CaseSection title="Segmentation / Persona" icon={Users}>
           <div className="rounded-2xl bg-black/[0.03] p-6 md:flex md:gap-6">
             <div className="flex aspect-square w-20 shrink-0 items-center justify-center rounded-2xl border border-dashed border-black/15 bg-black/[0.02] text-center">
               <span className="text-[9px] font-semibold uppercase tracking-wide text-black/35">
@@ -1086,8 +1425,47 @@ export default function Team1CaseStudy() {
         </CaseSection>
 
         {/* ───────────────── 12 — ROADMAP ───────────────── */}
-        <CaseSection index="12" title="Quarter-by-Quarter Roadmap" icon={Map}>
-          <p className="max-w-2xl text-sm leading-relaxed text-black/55">
+        <CaseSection title="Quarter-by-Quarter Roadmap" icon={Map}>
+          <p className="max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
+            The builder-to-funding loop.
+          </p>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-black/55">
+            The model every chapter runs, before the quarter-by-quarter
+            timeline it produces.
+          </p>
+
+          <div className="mt-6 grid grid-cols-1 items-stretch gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr]">
+            {GROWTH_LOOP.map((step, i) => (
+              <Fragment key={step.order}>
+                <div className="rounded-2xl bg-black/[0.03] p-4">
+                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wide">
+                    <span className="text-black/35">{step.order}</span>
+                    {step.title}
+                  </div>
+                  <p className="mt-2 text-xs leading-relaxed text-black/60">
+                    {step.detail}
+                  </p>
+                </div>
+                {i < GROWTH_LOOP.length - 1 && (
+                  <div className="hidden items-center justify-center text-black/30 md:flex">
+                    <ArrowRight className="size-4" />
+                  </div>
+                )}
+              </Fragment>
+            ))}
+          </div>
+
+          <div className="mt-4 rounded-3xl bg-black p-6 text-white md:p-8">
+            <div className="text-[11px] font-semibold uppercase tracking-wide text-white/50">
+              The Point
+            </div>
+            <p className="mt-2 max-w-2xl text-lg font-bold leading-snug md:text-xl">
+              Build a community that backs Avalanche on both sides —
+              builders shipping code, and culture keeping people around.
+            </p>
+          </div>
+
+          <p className="mt-8 max-w-2xl text-sm leading-relaxed text-black/55">
             Tied back to the North Star — each phase&apos;s target is a
             checkpoint on the same 30-day-retained-builder metric.
           </p>
@@ -1114,7 +1492,7 @@ export default function Team1CaseStudy() {
         </CaseSection>
 
         {/* ───────────────── 13 — REGIONAL EXPANSION MAP ───────────────── */}
-        <CaseSection index="13" title="Regional Expansion Map" icon={Globe}>
+        <CaseSection title="Regional Expansion Map" icon={Globe}>
           <p className="max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
             Beyond Bangkok, beyond students.
           </p>
@@ -1179,7 +1557,7 @@ export default function Team1CaseStudy() {
         </CaseSection>
 
         {/* ───────────────── 14 — AUDIENCE DIVERSIFICATION ───────────────── */}
-        <CaseSection index="14" title="Beyond Students — Audience Diversification" icon={UserPlus}>
+        <CaseSection title="Beyond Students — Audience Diversification" icon={UserPlus}>
           <p className="max-w-2xl text-sm leading-relaxed text-black/55">
             Students bring volume and energy but weak retention and zero
             revenue-adjacent credibility — they graduate, get busy, and
@@ -1214,7 +1592,7 @@ export default function Team1CaseStudy() {
         </CaseSection>
 
         {/* ───────────────── 15 — MONTHLY EVENT CADENCE ───────────────── */}
-        <CaseSection index="15" title="Monthly Event Cadence" icon={CalendarClock}>
+        <CaseSection title="Monthly Event Cadence" icon={CalendarClock}>
           <p className="max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
             The repeatable engine.
           </p>

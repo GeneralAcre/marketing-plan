@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { SectionTag } from "@/components/section-tag";
 
 const EVENT_PHOTOS = [
   {
@@ -48,9 +47,7 @@ export function Gallery() {
   return (
     <section id="gallery" className="w-full scroll-mt-24">
       <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 md:p-12 lg:p-16">
-        <SectionTag label="02 — On the Ground" />
-
-        <p className="mt-6 max-w-2xl text-xl font-bold leading-snug tracking-tight md:text-2xl">
+        <p className="max-w-2xl text-xl font-bold leading-snug tracking-tight md:text-2xl">
           8 events run, not just planned.
         </p>
         <p className="mt-3 max-w-2xl text-base leading-relaxed text-black/55">

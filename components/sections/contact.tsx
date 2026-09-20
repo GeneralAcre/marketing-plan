@@ -1,4 +1,3 @@
-import { SectionTag } from "@/components/section-tag";
 import { GithubMark, XMark } from "@/components/brand-icons";
 import { Mail, Send } from "lucide-react";
 
@@ -35,8 +34,7 @@ export function Contact() {
   return (
     <section id="contact" className="w-full scroll-mt-24">
       <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 md:p-12 lg:p-16">
-        <SectionTag label="09 — Hire Me" />
-        <p className="mt-4 max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
+        <p className="max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
           Let&apos;s talk.
         </p>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-black/55">

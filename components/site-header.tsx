@@ -4,9 +4,7 @@ import { MessageCircle } from "lucide-react";
 const NAV_LINKS = [
   { href: "/#impact", label: "Impact" },
   { href: "/#case-studies", label: "Case Studies" },
-  { href: "/#frameworks", label: "Frameworks" },
   { href: "/#ai-toolkit", label: "AI Toolkit" },
-  { href: "/#roadmap", label: "Roadmap" },
   { href: "/#contact", label: "Hire Me" },
 ];
 

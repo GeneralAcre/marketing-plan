@@ -23,9 +23,7 @@ export function Impact() {
   return (
     <section id="impact" className="w-full scroll-mt-24">
       <div className="rounded-3xl bg-black p-6 text-white md:p-12 lg:p-16">
-        <SectionTag label="01 — Impact" tone="dark" />
-
-        <div className="mt-8 rounded-2xl bg-white/5 p-5 md:p-6">
+        <div className="rounded-2xl bg-white/5 p-5 md:p-6">
           <SectionTag label="Avalanche Team1 — Ops Lead" tone="dark" className="mb-4" />
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
             {TEAM1_HIGHLIGHTS.map((item) => (

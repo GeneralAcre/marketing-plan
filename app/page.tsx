@@ -5,9 +5,6 @@ import { Impact } from "@/components/sections/impact";
 import { Gallery } from "@/components/sections/gallery";
 import { Architecture } from "@/components/sections/architecture";
 import { CaseStudies } from "@/components/sections/case-studies";
-import { Frameworks } from "@/components/sections/frameworks";
-import { Roadmap } from "@/components/sections/roadmap";
-import { Playbook } from "@/components/sections/playbook";
 import { AiToolkit } from "@/components/sections/ai-toolkit";
 import { Contact } from "@/components/sections/contact";
 
@@ -28,9 +25,6 @@ export default function Home() {
         <Gallery />
         <Architecture />
         <CaseStudies />
-        <Frameworks />
-        <Roadmap />
-        <Playbook />
         <AiToolkit />
         <Contact />
       </main>
