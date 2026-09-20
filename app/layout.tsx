@@ -13,9 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Acre — Interlock GTM, Operations & Builder Lead",
+  title: {
+    template: "%s | Acre — Marketing Portfolio",
+    default: "Acre — Marketing Portfolio",
+  },
   description:
-    "Sanpaphat 'Acre' Porntongprasert — bridging subsecond smart contract UX to mass distribution and playbook execution.",
+    "Sanpaphat 'Acre' Porntongprasert — turning a fixed budget into a five-university builder pipeline, scored and run like a product.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
