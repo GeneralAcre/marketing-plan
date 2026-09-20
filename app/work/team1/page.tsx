@@ -16,6 +16,8 @@ import {
 } from "@/components/ui/table";
 import {
   Target,
+  TrendingUp,
+  ClipboardList,
   FileText,
   ListOrdered,
   GitBranch,
@@ -28,7 +30,6 @@ import {
   Globe,
   UserPlus,
   CalendarClock,
-  ClipboardList,
   ArrowRight,
   ArrowLeft,
   MessageCircle,
@@ -64,11 +65,157 @@ const FUNNEL = [
   },
 ];
 
+const IMPACT_SNAPSHOT = [
+  {
+    value: "58.06%",
+    label: "Registration → Attendance",
+    detail: "31 registered, 18 showed up — Chula, chapter 1.",
+  },
+  {
+    value: "7",
+    label: "Verified Wallets Deployed",
+    detail: "Live testnet/mainnet deploys, not just sign-ups.",
+  },
+  {
+    value: "9",
+    label: "Smart Contracts Shipped",
+    detail: "On-chain and verified — some builders shipped more than one.",
+  },
+  {
+    value: "7",
+    label: "Telegram Joins",
+    detail: "Day-1 seed for the AcreLabs retention loop.",
+  },
+  {
+    value: "~1,334 THB",
+    label: "Cost / Verified Builder",
+    detail: "vs. 5,000–10,000 THB industry grant benchmark.",
+  },
+  {
+    value: "16.2",
+    label: "Top RICE Score",
+    detail: "Cluster picked by data, not gut feel.",
+  },
+  {
+    value: "5",
+    label: "University Chapters Owned",
+    detail: "End-to-end: curriculum, vendors, merch, partnerships.",
+  },
+  {
+    value: "200K THB",
+    label: "Total Budget Owned",
+    detail: "Sole ops lead — no dedicated marketing hire.",
+  },
+];
+
+type Team1Event = {
+  name: string;
+  type: string;
+  date: string;
+  status: "done" | "scheduled";
+  registered?: number;
+  attendees?: number;
+  conversion?: string;
+  wallets?: number;
+  contracts?: number;
+  telegram?: number;
+};
+
+const TEAM1_EVENTS: Team1Event[] = [
+  {
+    name: "Chula — Avalanche Builder Workshop & Networking",
+    type: "Workshop",
+    date: "Sep 5, 2026",
+    status: "done" as const,
+    registered: 31,
+    attendees: 18,
+    conversion: "58.06%",
+    wallets: 7,
+    contracts: 9,
+    telegram: 7,
+  },
+  {
+    name: "Thailand Chapter Launch",
+    type: "Community",
+    date: "Sep 24, 2026",
+    status: "scheduled" as const,
+  },
+  {
+    name: "Codebase Hackathon — Chula Edition",
+    type: "Hackathon",
+    date: "Sep 26, 2026",
+    status: "scheduled" as const,
+  },
+  {
+    name: "KU — Introduction to Blockchain",
+    type: "Workshop",
+    date: "Sep 27, 2026",
+    status: "scheduled" as const,
+  },
+  {
+    name: "First Community Call",
+    type: "Online",
+    date: "Oct 3, 2026",
+    status: "scheduled" as const,
+  },
+  {
+    name: "KMITL — Introduction to Blockchain",
+    type: "Workshop",
+    date: "Oct 6, 2026",
+    status: "scheduled" as const,
+  },
+  {
+    name: "TUBC — Vibe Code Your First Avalanche dApp",
+    type: "Workshop",
+    date: "Oct 7, 2026",
+    status: "scheduled" as const,
+  },
+  {
+    name: "TBD",
+    type: "TBD",
+    date: "TBD",
+    status: "scheduled" as const,
+  },
+];
+
+const OVERVIEW_STATS = [
+  {
+    label: "The Decision",
+    value: "5 / 10",
+    detail: "Clusters chosen over campuses — density over spread.",
+  },
+  {
+    label: "The Budget",
+    value: "667 THB",
+    detail: "Per attendee, on-target across 5 chapters.",
+  },
+  {
+    label: "The Output",
+    value: "100%",
+    detail: "Attendees leave with shipped, verified wallets.",
+  },
+];
+
+const EXECUTION_PHASES = [
+  {
+    label: "Pre-flight",
+    detail: "RICE-score selection, MOUs, curriculum.",
+  },
+  {
+    label: "Execution",
+    detail: "Live deploy sessions, QR wallet onboarding.",
+  },
+  {
+    label: "Compounding",
+    detail: "POAP retention, AcreLabs handoff, next chapter.",
+  },
+];
+
 const BRIEF = {
   problem:
-    "Avalanche has low top-of-funnel visibility among Thai university students, and prior ecosystem pushes were one-off hackathon spikes with no retained builder pipeline.",
+    "Weak visibility among Thai university students — past pushes were one-off hackathons with no retained pipeline.",
   hypothesis:
-    "If we concentrate a fixed budget into a small number of high-RICE-score university clusters with hands-on deploy workshops, we generate more verified builders per THB than a wide, thin spread — because peer density inside a cluster compounds word-of-mouth and lowers the marginal cost of each additional attendee.",
+    "A few high-RICE clusters with hands-on workshops beat a wide, thin spread — density compounds word-of-mouth and lowers cost per attendee.",
   metrics: [
     { type: "Leading", value: "Wallet deploy rate ≥ 50% per workshop" },
     {
@@ -98,30 +245,30 @@ const DECISION_LOG = [
     id: "ADR-001",
     title: "Density over spread — 5 clusters, not 10 campuses",
     context:
-      "200K THB could fund 10 campuses thinly or 5 campuses with a full workshop + hackathon experience.",
+      "200K THB spreads thin across 10 campuses, or funds 5 fully.",
     alternatives: [
       "10-university random spread (RICE 1.1)",
       "Single Bangkok mega-event (RICE 4.8)",
       "5-cluster dense selection (RICE 16.2 top cluster)",
     ],
     decision:
-      "Selected the 5-cluster dense option — highest RICE score, and matches the hypothesis that density compounds retention.",
+      "5-cluster dense option — highest RICE score, matches the density-compounds-retention hypothesis.",
     risk:
-      "Regional students outside Bangkok/Chiang Mai clusters are underserved in Phase 1. Accepted risk, mitigated by a planned Phase 2 satellite-chapter expansion if Phase 1 hits target.",
+      "Regional students outside these clusters are underserved in Phase 1 — accepted, with a Phase 2 satellite expansion planned if targets hit.",
   },
   {
     id: "ADR-002",
     title: "Workshop-first, not hackathon-first",
     context:
-      "Could have opened with a hackathon (higher initial buzz) or a workshop (lower buzz, higher completion certainty).",
+      "Hackathon-first (higher buzz) vs. workshop-first (higher completion certainty).",
     alternatives: [
       "Hackathon-first to maximize launch attention",
       "Workshop-first to guarantee a shipped wallet per attendee",
     ],
     decision:
-      "Workshop-first — every attendee leaves with a verified transaction before the funnel asks for a bigger time commitment.",
+      "Workshop-first — every attendee ships a verified transaction before a bigger ask.",
     risk:
-      "Lower initial social/press attention than a hackathon launch. Accepted — optimizing for verified builders, not impressions.",
+      "Less initial press than a hackathon launch — accepted; optimizing for builders, not impressions.",
   },
 ];
 
@@ -134,7 +281,7 @@ const INSTRUMENTATION = {
     "Telegram join + 30-day activity",
   ],
   vanity:
-    "Total event social impressions / reach — deliberately not weighted. It doesn't correlate with verified-builder conversion, only with awareness spend.",
+    "Total social impressions/reach — deliberately unweighted; it tracks awareness spend, not verified-builder conversion.",
   primary:
     "Cost per verified builder (not cost per attendee) — the number that actually defends the budget.",
 };
@@ -167,7 +314,7 @@ const STAKEHOLDER_ASK = {
   audience: "Avalanche Foundation regional lead + community sponsor",
   ask: "200,000 THB + curriculum support for a 5-cluster, 8-week university program.",
   framing:
-    "Traditional grant-based builder acquisition runs 5,000–10,000 THB per funded builder. This program targets under 1,500 THB per verified builder, plus a community retention loop that a one-off grant doesn't buy.",
+    "Grant-based acquisition runs 5,000–10,000 THB per builder; this targets under 1,500 THB, plus a retention loop a one-off grant can't buy.",
 };
 
 const ROLE_SCOPE = {
@@ -301,99 +448,6 @@ const MONTHLY_CADENCE = [
   },
 ];
 
-const OVERVIEW_STATS = [
-  {
-    label: "The Decision",
-    value: "5 / 10",
-    detail: "Clusters chosen over campuses — density over spread.",
-  },
-  {
-    label: "The Budget",
-    value: "667 THB",
-    detail: "Per attendee, on-target across 5 chapters.",
-  },
-  {
-    label: "The Output",
-    value: "100%",
-    detail: "Attendees leave with shipped, verified wallets.",
-  },
-];
-
-const EXECUTION_PHASES = [
-  {
-    label: "Pre-flight",
-    detail: "RICE-score selection, MOUs, curriculum.",
-  },
-  {
-    label: "Execution",
-    detail: "Live deploy sessions, QR wallet onboarding.",
-  },
-  {
-    label: "Compounding",
-    detail: "POAP retention, AcreLabs handoff, next chapter.",
-  },
-];
-
-type Team1Event = {
-  name: string;
-  type: string;
-  date: string;
-  status: "done" | "scheduled";
-  registered?: number;
-  attendees?: number;
-  conversion?: string;
-  wallets?: number;
-};
-
-const TEAM1_EVENTS: Team1Event[] = [
-  {
-    name: "Chula — Avalanche Builder Workshop & Networking",
-    type: "Workshop",
-    date: "Sep 5, 2026",
-    status: "done" as const,
-    registered: 31,
-    attendees: 18,
-    conversion: "58.06%",
-    wallets: 7,
-  },
-  {
-    name: "Thailand Chapter Launch",
-    type: "Community",
-    date: "Sep 24, 2026",
-    status: "scheduled" as const,
-  },
-  {
-    name: "Codebase Hackathon — Chula Edition",
-    type: "Hackathon",
-    date: "Sep 26, 2026",
-    status: "scheduled" as const,
-  },
-  {
-    name: "KU — Introduction to Blockchain",
-    type: "Workshop",
-    date: "Sep 27, 2026",
-    status: "scheduled" as const,
-  },
-  {
-    name: "First Community Call",
-    type: "Online",
-    date: "Oct 3, 2026",
-    status: "scheduled" as const,
-  },
-  {
-    name: "KMITL — Introduction to Blockchain",
-    type: "Workshop",
-    date: "Oct 6, 2026",
-    status: "scheduled" as const,
-  },
-  {
-    name: "TUBC — Vibe Code Your First Avalanche dApp",
-    type: "Workshop",
-    date: "Oct 7, 2026",
-    status: "scheduled" as const,
-  },
-];
-
 function CaseSection({
   index,
   title,
@@ -453,7 +507,16 @@ export default function Team1CaseStudy() {
               Reports to {ROLE_SCOPE.reportsTo}
             </p>
 
-            <div className="mt-8 grid grid-cols-1 gap-3 rounded-2xl bg-black/[0.03] p-3 sm:grid-cols-2 md:grid-cols-4">
+            <div className="mt-8 flex aspect-[21/9] flex-col items-center justify-center rounded-2xl border border-dashed border-black/15 bg-black/[0.02] text-center">
+              <span className="text-[11px] font-semibold uppercase tracking-wide text-black/40">
+                [ Cover Photo — Event / Cohort ]
+              </span>
+              <span className="mt-1 text-[11px] text-black/25">
+                Add later
+              </span>
+            </div>
+
+            <div className="mt-4 grid grid-cols-1 gap-3 rounded-2xl bg-black/[0.03] p-3 sm:grid-cols-2 md:grid-cols-4">
               {ROLE_SCOPE.lanes.map((lane) => (
                 <div key={lane.label} className="rounded-xl bg-white p-5 shadow-sm ring-1 ring-black/5">
                   <div className="text-xs font-bold uppercase tracking-wide">
@@ -502,16 +565,197 @@ export default function Team1CaseStudy() {
               Chosen Bottleneck
             </div>
             <p className="mt-2 text-sm leading-relaxed text-black/70">
-              Awareness → Engagement drop-off. At Chula, 31 registered but
-              only 18 attended (58.06%) — the ~42% no-show rate is the
-              highest-leverage point in the funnel to fix before scaling
-              spend on awareness.
+              Awareness → Engagement drop-off: 31 registered, 18 attended
+              at Chula (58.06%) — the ~42% no-show is the highest-leverage
+              fix before scaling awareness spend.
             </p>
           </div>
         </CaseSection>
 
-        {/* ───────────────── 02 — CAMPAIGN BRIEF (PRD) ───────────────── */}
-        <CaseSection index="02" title="Campaign Brief — PRD Format" icon={FileText}>
+        {/* ───────────────── 02 — IMPACT SNAPSHOT ───────────────── */}
+        <CaseSection index="02" title="Impact Snapshot" icon={TrendingUp}>
+          <p className="max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
+            One chapter live. Six kinds of proof.
+          </p>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-black/55">
+            Not just wallets — acquisition, on-chain shipping, community
+            retention, cost efficiency, prioritization rigor, and program
+            scope, all from a single running chapter.
+          </p>
+
+          <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
+            {IMPACT_SNAPSHOT.map((stat) => (
+              <div key={stat.label} className="rounded-2xl bg-black/[0.03] p-5">
+                <div className="text-xl font-bold md:text-2xl">{stat.value}</div>
+                <div className="mt-1 text-[11px] font-semibold uppercase leading-snug tracking-wide text-black/45">
+                  {stat.label}
+                </div>
+                <p className="mt-1.5 text-xs leading-relaxed text-black/60">
+                  {stat.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 rounded-2xl bg-black p-6 text-white">
+            <div className="text-[11px] font-semibold uppercase tracking-wide text-white/50">
+              The Number That Actually Matters
+            </div>
+            <p className="mt-2 text-sm leading-relaxed text-white/80">
+              667 THB per attendee undersells it — the real efficiency
+              story is ~1,334 THB per verified builder against a
+              5,000–10,000 THB grant-funded industry benchmark. That&apos;s
+              the number that defends the budget in the next review.
+            </p>
+          </div>
+        </CaseSection>
+
+        {/* ───────────────── 03 — CHAPTER TRACKER & EXECUTION DETAIL ───────────────── */}
+        <CaseSection index="03" title="Chapter Tracker & Execution Detail" icon={ClipboardList}>
+          <p className="max-w-2xl text-sm leading-relaxed text-black/55">
+            The run-of-show and per-chapter numbers behind the Impact
+            Snapshot above and the summary card on the main portfolio page.
+          </p>
+
+          <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-3">
+            {OVERVIEW_STATS.map((stat) => (
+              <div key={stat.label} className="rounded-2xl bg-black/[0.03] p-6">
+                <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
+                  {stat.label}
+                </div>
+                <div className="mt-2 text-2xl font-bold">{stat.value}</div>
+                <p className="mt-1 text-sm leading-relaxed text-black/70">
+                  {stat.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 rounded-2xl bg-black/[0.03] p-6">
+            <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
+              Pre-flight → Execution → Compounding
+            </div>
+            <div className="mt-4 grid grid-cols-1 items-stretch gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr]">
+              {EXECUTION_PHASES.map((phase, i) => (
+                <Fragment key={phase.label}>
+                  <div className="rounded-xl bg-white p-4 shadow-sm ring-1 ring-black/5">
+                    <div className="text-xs font-bold uppercase tracking-wide">
+                      {phase.label}
+                    </div>
+                    <p className="mt-2 text-xs leading-relaxed text-black/60">
+                      {phase.detail}
+                    </p>
+                  </div>
+                  {i < EXECUTION_PHASES.length - 1 && (
+                    <div className="hidden items-center justify-center text-black/30 md:flex">
+                      <ArrowRight className="size-4" />
+                    </div>
+                  )}
+                </Fragment>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-4">
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
+                Chapter Tracker
+              </div>
+              <Badge
+                variant="outline"
+                className="h-auto px-2.5 py-1 text-[11px] font-medium text-black/60"
+              >
+                1 / {TEAM1_EVENTS.length} Chapters Live
+              </Badge>
+            </div>
+
+            <div className="mt-4 overflow-x-auto rounded-2xl ring-1 ring-black/8">
+              <Table>
+                <TableHeader>
+                  <TableRow className="border-black/8 hover:bg-transparent">
+                    <TableHead className="text-[10px] uppercase tracking-wide text-black/45">
+                      Event
+                    </TableHead>
+                    <TableHead className="text-[10px] uppercase tracking-wide text-black/45">
+                      Date
+                    </TableHead>
+                    <TableHead className="text-[10px] uppercase tracking-wide text-black/45">
+                      Status
+                    </TableHead>
+                    <TableHead className="text-right text-[10px] uppercase tracking-wide text-black/45">
+                      Reg.
+                    </TableHead>
+                    <TableHead className="text-right text-[10px] uppercase tracking-wide text-black/45">
+                      Att.
+                    </TableHead>
+                    <TableHead className="text-right text-[10px] uppercase tracking-wide text-black/45">
+                      Conv.
+                    </TableHead>
+                    <TableHead className="text-right text-[10px] uppercase tracking-wide text-black/45">
+                      Wallets
+                    </TableHead>
+                    <TableHead className="text-right text-[10px] uppercase tracking-wide text-black/45">
+                      Contracts
+                    </TableHead>
+                    <TableHead className="text-right text-[10px] uppercase tracking-wide text-black/45">
+                      Telegram
+                    </TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {TEAM1_EVENTS.map((ev) => (
+                    <TableRow key={ev.name} className="border-black/8">
+                      <TableCell className="max-w-56 truncate font-medium">
+                        {ev.name}
+                        <div className="text-[11px] font-normal text-black/45">
+                          {ev.type}
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-black/55">
+                        {ev.date}
+                      </TableCell>
+                      <TableCell>
+                        {ev.status === "done" ? (
+                          <Badge className="h-auto px-2.5 py-0.5 text-[10px] font-semibold">
+                            Live
+                          </Badge>
+                        ) : (
+                          <Badge
+                            variant="outline"
+                            className="h-auto px-2.5 py-0.5 text-[10px] font-medium text-black/45"
+                          >
+                            Scheduled
+                          </Badge>
+                        )}
+                      </TableCell>
+                      <TableCell className="text-right tabular-nums">
+                        {ev.registered ?? "—"}
+                      </TableCell>
+                      <TableCell className="text-right tabular-nums">
+                        {ev.attendees ?? "—"}
+                      </TableCell>
+                      <TableCell className="text-right tabular-nums">
+                        {ev.conversion ?? "—"}
+                      </TableCell>
+                      <TableCell className="text-right tabular-nums">
+                        {ev.wallets ?? "—"}
+                      </TableCell>
+                      <TableCell className="text-right tabular-nums">
+                        {ev.contracts ?? "—"}
+                      </TableCell>
+                      <TableCell className="text-right tabular-nums">
+                        {ev.telegram ?? "—"}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </div>
+        </CaseSection>
+
+        {/* ───────────────── 04 — CAMPAIGN BRIEF (PRD) ───────────────── */}
+        <CaseSection index="04" title="Campaign Brief — PRD Format" icon={FileText}>
           <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
             <div className="rounded-2xl bg-black/[0.03] p-6 md:col-span-2">
               <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
@@ -551,45 +795,57 @@ export default function Team1CaseStudy() {
               <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
                 Constraints
               </div>
-              <ul className="mt-2 flex flex-col gap-1">
+              <div className="mt-2 flex flex-wrap gap-1.5">
                 {BRIEF.constraints.map((c) => (
-                  <li key={c} className="text-sm text-black/70">
-                    · {c}
-                  </li>
+                  <Badge
+                    key={c}
+                    variant="outline"
+                    className="h-auto px-2.5 py-1 text-[11px] font-medium text-black/60"
+                  >
+                    {c}
+                  </Badge>
                 ))}
-              </ul>
+              </div>
             </div>
 
             <div className="rounded-2xl bg-black/[0.03] p-6">
               <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
                 In Scope
               </div>
-              <ul className="mt-2 flex flex-col gap-1">
+              <div className="mt-2 flex flex-wrap gap-1.5">
                 {BRIEF.scope.map((s) => (
-                  <li key={s} className="text-sm text-black/70">
-                    · {s}
-                  </li>
+                  <Badge
+                    key={s}
+                    variant="outline"
+                    className="h-auto px-2.5 py-1 text-[11px] font-medium text-black/60"
+                  >
+                    {s}
+                  </Badge>
                 ))}
-              </ul>
+              </div>
             </div>
 
             <div className="rounded-2xl bg-black/[0.03] p-6">
               <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
                 Out of Scope
               </div>
-              <ul className="mt-2 flex flex-col gap-1">
+              <div className="mt-2 flex flex-wrap gap-1.5">
                 {BRIEF.outOfScope.map((s) => (
-                  <li key={s} className="text-sm text-black/35">
-                    · {s}
-                  </li>
+                  <Badge
+                    key={s}
+                    variant="outline"
+                    className="h-auto px-2.5 py-1 text-[11px] font-medium text-black/35"
+                  >
+                    {s}
+                  </Badge>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </CaseSection>
 
-        {/* ───────────────── 03 — PRIORITIZATION ───────────────── */}
-        <CaseSection index="03" title="Prioritization Framework" icon={ListOrdered}>
+        {/* ───────────────── 05 — PRIORITIZATION ───────────────── */}
+        <CaseSection index="05" title="Prioritization Framework" icon={ListOrdered}>
           <p className="max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
             RICE scoring, not gut feel.
           </p>
@@ -615,8 +871,8 @@ export default function Team1CaseStudy() {
           </div>
         </CaseSection>
 
-        {/* ───────────────── 04 — DECISION LOG ───────────────── */}
-        <CaseSection index="04" title="Decision Log (ADR-style)" icon={GitBranch}>
+        {/* ───────────────── 06 — DECISION LOG ───────────────── */}
+        <CaseSection index="06" title="Decision Log (ADR-style)" icon={GitBranch}>
           <div className="flex flex-col gap-4">
             {DECISION_LOG.map((d) => (
               <div key={d.id} className="overflow-hidden rounded-2xl bg-black/[0.03]">
@@ -639,13 +895,17 @@ export default function Team1CaseStudy() {
                     <div className="mt-4 text-[11px] font-semibold uppercase tracking-wide text-black/45">
                       Alternatives Considered
                     </div>
-                    <ul className="mt-2 flex flex-col gap-1">
+                    <div className="mt-2 flex flex-wrap gap-1.5">
                       {d.alternatives.map((a) => (
-                        <li key={a} className="text-sm text-black/70">
-                          · {a}
-                        </li>
+                        <Badge
+                          key={a}
+                          variant="outline"
+                          className="h-auto px-2.5 py-1 text-[11px] font-medium text-black/60"
+                        >
+                          {a}
+                        </Badge>
                       ))}
-                    </ul>
+                    </div>
                   </div>
                   <div className="rounded-xl bg-white p-5 shadow-sm ring-1 ring-black/5">
                     <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
@@ -667,8 +927,8 @@ export default function Team1CaseStudy() {
           </div>
         </CaseSection>
 
-        {/* ───────────────── 05 — INSTRUMENTATION PLAN ───────────────── */}
-        <CaseSection index="05" title="Instrumentation Plan" icon={Activity}>
+        {/* ───────────────── 07 — INSTRUMENTATION PLAN ───────────────── */}
+        <CaseSection index="07" title="Instrumentation Plan" icon={Activity}>
           <p className="max-w-2xl text-sm leading-relaxed text-black/55">
             Defined before the first event ran, not reconstructed from
             whatever numbers happened to be available afterward.
@@ -679,13 +939,17 @@ export default function Team1CaseStudy() {
               <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
                 Tracked From Day 1
               </div>
-              <ul className="mt-2 flex flex-col gap-1">
+              <div className="mt-2 flex flex-wrap gap-1.5">
                 {INSTRUMENTATION.tracked.map((t) => (
-                  <li key={t} className="text-sm text-black/70">
-                    · {t}
-                  </li>
+                  <Badge
+                    key={t}
+                    variant="outline"
+                    className="h-auto px-2.5 py-1 text-[11px] font-medium text-black/60"
+                  >
+                    {t}
+                  </Badge>
                 ))}
-              </ul>
+              </div>
             </div>
             <div className="rounded-2xl bg-black/[0.03] p-6">
               <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
@@ -706,10 +970,10 @@ export default function Team1CaseStudy() {
           </div>
         </CaseSection>
 
-        {/* ───────────────── 06 — EXPERIMENT / ITERATION LOG ───────────────── */}
-        <CaseSection index="06" title="Experiment / Iteration Log" icon={FlaskConical}>
+        {/* ───────────────── 08 — EXPERIMENT / ITERATION LOG ───────────────── */}
+        <CaseSection index="08" title="Experiment / Iteration Log" icon={FlaskConical}>
           <p className="max-w-2xl text-sm leading-relaxed text-black/55">
-            Build → measure → learn, chapter by chapter. Only 1 of 7 events
+            Build → measure → learn, chapter by chapter. Only 1 of 8 events
             has run so far — this log grows as chapters complete.
           </p>
 
@@ -732,8 +996,8 @@ export default function Team1CaseStudy() {
           </div>
         </CaseSection>
 
-        {/* ───────────────── 07 — RETRO / KILL CRITERIA ───────────────── */}
-        <CaseSection index="07" title="Retro / Postmortem — Kill Criteria" icon={ShieldAlert}>
+        {/* ───────────────── 09 — RETRO / KILL CRITERIA ───────────────── */}
+        <CaseSection index="09" title="Retro / Postmortem — Kill Criteria" icon={ShieldAlert}>
           <p className="max-w-2xl text-sm leading-relaxed text-black/55">
             {KILL_CRITERIA.setBefore}
           </p>
@@ -743,13 +1007,16 @@ export default function Team1CaseStudy() {
               <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
                 Kill Thresholds
               </div>
-              <ul className="mt-2 flex flex-col gap-2">
+              <div className="mt-2 flex flex-col gap-2">
                 {KILL_CRITERIA.rules.map((r) => (
-                  <li key={r} className="text-sm text-black/70">
-                    · {r}
-                  </li>
+                  <div
+                    key={r}
+                    className="rounded-lg bg-white px-3 py-2 text-sm leading-relaxed text-black/70 shadow-sm ring-1 ring-black/5"
+                  >
+                    {r}
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
             <div className="rounded-2xl bg-black p-6 text-white">
               <div className="text-[11px] font-semibold uppercase tracking-wide text-white/50">
@@ -762,8 +1029,8 @@ export default function Team1CaseStudy() {
           </div>
         </CaseSection>
 
-        {/* ───────────────── 08 — STAKEHOLDER ALIGNMENT ───────────────── */}
-        <CaseSection index="08" title="Stakeholder Alignment Artifact" icon={Handshake}>
+        {/* ───────────────── 10 — STAKEHOLDER ALIGNMENT ───────────────── */}
+        <CaseSection index="10" title="Stakeholder Alignment Artifact" icon={Handshake}>
           <div className="rounded-2xl bg-black/[0.03] p-6">
             <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
               Audience
@@ -784,31 +1051,42 @@ export default function Team1CaseStudy() {
           </div>
         </CaseSection>
 
-        {/* ───────────────── 09 — PERSONA / SEGMENTATION ───────────────── */}
-        <CaseSection index="09" title="Segmentation / Persona" icon={Users}>
-          <div className="rounded-2xl bg-black/[0.03] p-6">
-            <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
-              Persona
+        {/* ───────────────── 11 — PERSONA / SEGMENTATION ───────────────── */}
+        <CaseSection index="11" title="Segmentation / Persona" icon={Users}>
+          <div className="rounded-2xl bg-black/[0.03] p-6 md:flex md:gap-6">
+            <div className="flex aspect-square w-20 shrink-0 items-center justify-center rounded-2xl border border-dashed border-black/15 bg-black/[0.02] text-center">
+              <span className="text-[9px] font-semibold uppercase tracking-wide text-black/35">
+                Avatar
+              </span>
             </div>
-            <div className="mt-2 text-lg font-bold">{PERSONA.name}</div>
-            <ul className="mt-3 flex flex-col gap-1">
-              {PERSONA.traits.map((t) => (
-                <li key={t} className="text-sm text-black/70">
-                  · {t}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-4 text-[11px] font-semibold uppercase tracking-wide text-black/45">
-              How It Was Used
+            <div className="mt-4 md:mt-0">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
+                Persona
+              </div>
+              <div className="mt-2 text-lg font-bold">{PERSONA.name}</div>
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {PERSONA.traits.map((t) => (
+                  <Badge
+                    key={t}
+                    variant="outline"
+                    className="h-auto px-2.5 py-1 text-[11px] font-medium text-black/60"
+                  >
+                    {t}
+                  </Badge>
+                ))}
+              </div>
+              <div className="mt-4 text-[11px] font-semibold uppercase tracking-wide text-black/45">
+                How It Was Used
+              </div>
+              <p className="mt-2 text-sm leading-relaxed text-black/70">
+                {PERSONA.use}
+              </p>
             </div>
-            <p className="mt-2 text-sm leading-relaxed text-black/70">
-              {PERSONA.use}
-            </p>
           </div>
         </CaseSection>
 
-        {/* ───────────────── 10 — ROADMAP ───────────────── */}
-        <CaseSection index="10" title="Quarter-by-Quarter Roadmap" icon={Map}>
+        {/* ───────────────── 12 — ROADMAP ───────────────── */}
+        <CaseSection index="12" title="Quarter-by-Quarter Roadmap" icon={Map}>
           <p className="max-w-2xl text-sm leading-relaxed text-black/55">
             Tied back to the North Star — each phase&apos;s target is a
             checkpoint on the same 30-day-retained-builder metric.
@@ -835,8 +1113,8 @@ export default function Team1CaseStudy() {
           </div>
         </CaseSection>
 
-        {/* ───────────────── 11 — REGIONAL EXPANSION MAP ───────────────── */}
-        <CaseSection index="11" title="Regional Expansion Map" icon={Globe}>
+        {/* ───────────────── 13 — REGIONAL EXPANSION MAP ───────────────── */}
+        <CaseSection index="13" title="Regional Expansion Map" icon={Globe}>
           <p className="max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
             Beyond Bangkok, beyond students.
           </p>
@@ -900,8 +1178,8 @@ export default function Team1CaseStudy() {
           </div>
         </CaseSection>
 
-        {/* ───────────────── 12 — AUDIENCE DIVERSIFICATION ───────────────── */}
-        <CaseSection index="12" title="Beyond Students — Audience Diversification" icon={UserPlus}>
+        {/* ───────────────── 14 — AUDIENCE DIVERSIFICATION ───────────────── */}
+        <CaseSection index="14" title="Beyond Students — Audience Diversification" icon={UserPlus}>
           <p className="max-w-2xl text-sm leading-relaxed text-black/55">
             Students bring volume and energy but weak retention and zero
             revenue-adjacent credibility — they graduate, get busy, and
@@ -935,8 +1213,8 @@ export default function Team1CaseStudy() {
           </div>
         </CaseSection>
 
-        {/* ───────────────── 13 — MONTHLY EVENT CADENCE ───────────────── */}
-        <CaseSection index="13" title="Monthly Event Cadence" icon={CalendarClock}>
+        {/* ───────────────── 15 — MONTHLY EVENT CADENCE ───────────────── */}
+        <CaseSection index="15" title="Monthly Event Cadence" icon={CalendarClock}>
           <p className="max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
             The repeatable engine.
           </p>
@@ -985,138 +1263,6 @@ export default function Team1CaseStudy() {
               line that separates &quot;ran events&quot; from running a regional
               program.
             </p>
-          </div>
-        </CaseSection>
-
-        {/* ───────────────── 14 — CHAPTER TRACKER & EXECUTION DETAIL ───────────────── */}
-        <CaseSection index="14" title="Chapter Tracker & Execution Detail" icon={ClipboardList}>
-          <p className="max-w-2xl text-sm leading-relaxed text-black/55">
-            The overview stats, run-of-show, and per-chapter numbers behind
-            the summary card on the main portfolio page.
-          </p>
-
-          <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-3">
-            {OVERVIEW_STATS.map((stat) => (
-              <div key={stat.label} className="rounded-2xl bg-black/[0.03] p-6">
-                <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
-                  {stat.label}
-                </div>
-                <div className="mt-2 text-2xl font-bold">{stat.value}</div>
-                <p className="mt-1 text-sm leading-relaxed text-black/70">
-                  {stat.detail}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-4 rounded-2xl bg-black/[0.03] p-6">
-            <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
-              Pre-flight → Execution → Compounding
-            </div>
-            <div className="mt-4 grid grid-cols-1 items-stretch gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr]">
-              {EXECUTION_PHASES.map((phase, i) => (
-                <Fragment key={phase.label}>
-                  <div className="rounded-xl bg-white p-4 shadow-sm ring-1 ring-black/5">
-                    <div className="text-xs font-bold uppercase tracking-wide">
-                      {phase.label}
-                    </div>
-                    <p className="mt-2 text-xs leading-relaxed text-black/60">
-                      {phase.detail}
-                    </p>
-                  </div>
-                  {i < EXECUTION_PHASES.length - 1 && (
-                    <div className="hidden items-center justify-center text-black/30 md:flex">
-                      <ArrowRight className="size-4" />
-                    </div>
-                  )}
-                </Fragment>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-4">
-            <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <div className="text-[11px] font-semibold uppercase tracking-wide text-black/45">
-                Chapter Tracker
-              </div>
-              <Badge
-                variant="outline"
-                className="h-auto px-2.5 py-1 text-[11px] font-medium text-black/60"
-              >
-                1 / {TEAM1_EVENTS.length} Chapters Live
-              </Badge>
-            </div>
-
-            <div className="mt-4 overflow-hidden rounded-2xl ring-1 ring-black/8">
-              <Table>
-                <TableHeader>
-                  <TableRow className="border-black/8 hover:bg-transparent">
-                    <TableHead className="text-[10px] uppercase tracking-wide text-black/45">
-                      Event
-                    </TableHead>
-                    <TableHead className="text-[10px] uppercase tracking-wide text-black/45">
-                      Date
-                    </TableHead>
-                    <TableHead className="text-[10px] uppercase tracking-wide text-black/45">
-                      Status
-                    </TableHead>
-                    <TableHead className="text-right text-[10px] uppercase tracking-wide text-black/45">
-                      Reg.
-                    </TableHead>
-                    <TableHead className="text-right text-[10px] uppercase tracking-wide text-black/45">
-                      Att.
-                    </TableHead>
-                    <TableHead className="text-right text-[10px] uppercase tracking-wide text-black/45">
-                      Conv.
-                    </TableHead>
-                    <TableHead className="text-right text-[10px] uppercase tracking-wide text-black/45">
-                      Wallets
-                    </TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {TEAM1_EVENTS.map((ev) => (
-                    <TableRow key={ev.name} className="border-black/8">
-                      <TableCell className="max-w-56 truncate font-medium">
-                        {ev.name}
-                        <div className="text-[11px] font-normal text-black/45">
-                          {ev.type}
-                        </div>
-                      </TableCell>
-                      <TableCell className="text-black/55">
-                        {ev.date}
-                      </TableCell>
-                      <TableCell>
-                        {ev.status === "done" ? (
-                          <Badge className="h-auto px-2.5 py-0.5 text-[10px] font-semibold">
-                            Live
-                          </Badge>
-                        ) : (
-                          <Badge
-                            variant="outline"
-                            className="h-auto px-2.5 py-0.5 text-[10px] font-medium text-black/45"
-                          >
-                            Scheduled
-                          </Badge>
-                        )}
-                      </TableCell>
-                      <TableCell className="text-right tabular-nums">
-                        {ev.registered ?? "—"}
-                      </TableCell>
-                      <TableCell className="text-right tabular-nums">
-                        {ev.attendees ?? "—"}
-                      </TableCell>
-                      <TableCell className="text-right tabular-nums">
-                        {ev.conversion ?? "—"}
-                      </TableCell>
-                      <TableCell className="text-right tabular-nums">
-                        {ev.wallets ?? "—"}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
           </div>
         </CaseSection>
 

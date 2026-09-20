@@ -115,7 +115,7 @@ export function Frameworks() {
   return (
     <section id="frameworks" className="w-full scroll-mt-24">
       <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 md:p-12 lg:p-16">
-        <SectionTag label="04 — Diagnostic & Analytical Layer" />
+        <SectionTag label="05 — Diagnostic & Analytical Layer" />
         <p className="mt-4 max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
           The frameworks behind the numbers.
         </p>
@@ -167,7 +167,55 @@ export function Frameworks() {
             </div>
           </div>
 
-          <div className="mt-4 overflow-x-auto rounded-xl ring-1 ring-black/8">
+          {/* Mobile: stacked cards — every value visible at once, no horizontal scroll */}
+          <div className="mt-4 flex flex-col gap-3 md:hidden">
+            {RICE_ROWS.map((row) => (
+              <div
+                key={row.program}
+                className="rounded-xl bg-white p-4 ring-1 ring-black/8"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <div className="text-xs font-medium">{row.program}</div>
+                  {row.status === "done" ? (
+                    <Badge className="h-auto shrink-0 px-2 py-0.5 text-[10px] font-semibold">
+                      Live
+                    </Badge>
+                  ) : (
+                    <Badge
+                      variant="outline"
+                      className="h-auto shrink-0 px-2 py-0.5 text-[10px] font-medium text-black/45"
+                    >
+                      Scheduled
+                    </Badge>
+                  )}
+                </div>
+                <div className="mt-3 grid grid-cols-5 gap-1.5">
+                  {[
+                    { label: "R", value: row.reach, tone: reachTone(row.reach) },
+                    { label: "I", value: row.impact, tone: impactTone(row.impact) },
+                    { label: "C", value: row.confidence, tone: confidenceTone(row.confidence) },
+                    { label: "E", value: row.effort, tone: effortTone(row.effort) },
+                    { label: "Score", value: row.score, tone: scoreTone(row.score) },
+                  ].map((cell) => (
+                    <div
+                      key={cell.label}
+                      className={`rounded-lg py-1.5 text-center ${cell.tone}`}
+                    >
+                      <div className="text-[8px] font-semibold uppercase tracking-wide opacity-70">
+                        {cell.label}
+                      </div>
+                      <div className="text-xs font-bold tabular-nums">
+                        {cell.value}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop / tablet: full table */}
+          <div className="mt-4 hidden overflow-x-auto rounded-xl ring-1 ring-black/8 md:block">
             <table className="w-full min-w-[560px] border-collapse text-left text-xs">
               <thead>
                 <tr className="bg-white">

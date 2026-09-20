@@ -20,12 +20,14 @@ const CONTACT_LINKS = [
     value: "@acre",
     href: "https://x.com/acre",
     icon: XMark,
+    hideOnMobile: true,
   },
   {
     label: "GitHub",
     value: "@acre",
     href: "https://github.com/acre",
     icon: GithubMark,
+    hideOnMobile: true,
   },
 ];
 
@@ -33,7 +35,7 @@ export function Contact() {
   return (
     <section id="contact" className="w-full scroll-mt-24">
       <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 md:p-12 lg:p-16">
-        <SectionTag label="09 — Contact" />
+        <SectionTag label="09 — Hire Me" />
         <p className="mt-4 max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
           Let&apos;s talk.
         </p>
@@ -53,7 +55,9 @@ export function Contact() {
                   ? "noopener noreferrer"
                   : undefined
               }
-              className="group flex flex-col gap-3 rounded-2xl bg-black/[0.03] p-5 transition-colors hover:bg-black hover:text-white"
+              className={`group flex-col gap-3 rounded-2xl bg-black/[0.03] p-5 transition-colors hover:bg-black hover:text-white ${
+                link.hideOnMobile ? "hidden sm:flex" : "flex"
+              }`}
             >
               <link.icon className="size-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               <div className="flex flex-col gap-1">

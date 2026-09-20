@@ -29,7 +29,7 @@ export function Roadmap() {
   return (
     <section id="roadmap" className="w-full scroll-mt-24">
       <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 md:p-12 lg:p-16">
-        <SectionTag label="05 — Roadmap" />
+        <SectionTag label="06 — Roadmap" />
         <p className="mt-4 max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
           The builder-to-funding loop.
         </p>

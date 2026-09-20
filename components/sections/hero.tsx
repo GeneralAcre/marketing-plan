@@ -4,7 +4,7 @@ import { SectionTag } from "@/components/section-tag";
 import { StatTile } from "@/components/stat-tile";
 
 const TEAM1_STATS = [
-  { value: "667 THB", label: "Cost per Attendee (200K Budget)" },
+  { value: "8", label: "Events Hosted" },
   { value: "5", label: "University Chapters" },
 ];
 
@@ -37,29 +37,6 @@ export function Hero() {
               <StatTile key={stat.label} value={stat.value} label={stat.label} />
             ))}
           </div>
-        </div>
-
-        <div className="mt-10 flex flex-wrap gap-3">
-          <a
-            href="#impact"
-            className={cn(
-              buttonVariants({ variant: "default" }),
-              "h-auto rounded-full px-6 py-3 text-sm font-semibold"
-            )}
-          >
-            See the Impact ↓
-          </a>
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn(
-              buttonVariants({ variant: "outline" }),
-              "h-auto rounded-full border-black/15 px-6 py-3 text-sm font-semibold hover:bg-black hover:text-white"
-            )}
-          >
-            Download Resume ↗
-          </a>
         </div>
       </div>
     </section>
