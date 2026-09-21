@@ -20,7 +20,7 @@ export function Hero() {
           Interlock GTM, Operations &amp; Builder Lead
         </div>
 
-        <h1 className="mt-6 max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">
+        <h1 className="mt-6 max-w-4xl break-words text-[1.75rem] font-bold leading-[1.1] tracking-tight min-[376px]:text-[2rem] sm:text-4xl sm:leading-[1.05] md:text-6xl">
           Sanpaphat Porntongprasert
         </h1>
 
@@ -56,9 +56,9 @@ export function Hero() {
           </Link>
         </div>
 
-        <div className="mt-10 max-w-lg rounded-3xl bg-black p-5 text-white md:p-6">
+        <div className="mt-10 max-w-lg rounded-3xl bg-black p-4 text-white md:p-6">
           <SectionTag label="Avalanche Team1 — Ops Lead" tone="dark" className="mb-4" />
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-3 gap-2 sm:gap-3">
             {TEAM1_STATS.map((stat) => (
               <StatTile
                 key={stat.label}

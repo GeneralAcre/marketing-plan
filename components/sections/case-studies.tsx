@@ -28,7 +28,7 @@ export function CaseStudies() {
             </div>
 
             <CardHeader className="grid-cols-1 gap-3 px-6 py-6">
-              <div className="flex flex-wrap items-start justify-between gap-3">
+              <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <CardTitle className="font-sans text-xl font-bold md:text-2xl">
                     Avalanche Team1 : 5 University Series
@@ -36,31 +36,31 @@ export function CaseStudies() {
                   <p className="mt-1 text-sm font-medium text-black/55">
                     Operations Lead
                   </p>
-                  <Link
-                    href="/work/team1"
-                    className={cn(
-                      buttonVariants({ variant: "default" }),
-                      "mt-4 h-auto rounded-full px-6 py-3 text-sm font-semibold"
-                    )}
-                  >
-                    Details
-                    <ArrowUpRight />
-                  </Link>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <Badge
+                      variant="outline"
+                      className="h-auto px-2.5 py-1 text-[11px] font-medium text-black/60"
+                    >
+                      ADR #001
+                    </Badge>
+                    <Badge className="h-auto border-transparent bg-[#FFCE4E] px-2.5 py-1 text-[11px] font-semibold text-black">
+                      200K THB Budget
+                    </Badge>
+                    <Badge className="h-auto border-transparent bg-[#F84E00] px-2.5 py-1 text-[11px] font-semibold text-white">
+                      5 Chapters
+                    </Badge>
+                  </div>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  <Badge
-                    variant="outline"
-                    className="h-auto px-2.5 py-1 text-[11px] font-medium text-black/60"
-                  >
-                    ADR #001
-                  </Badge>
-                  <Badge className="h-auto border-transparent bg-[#FFCE4E] px-2.5 py-1 text-[11px] font-semibold text-black">
-                    200K THB Budget
-                  </Badge>
-                  <Badge className="h-auto border-transparent bg-[#F84E00] px-2.5 py-1 text-[11px] font-semibold text-white">
-                    5 Chapters
-                  </Badge>
-                </div>
+                <Link
+                  href="/work/team1"
+                  className={cn(
+                    buttonVariants({ variant: "default" }),
+                    "h-auto shrink-0 rounded-full bg-[#F84E00] px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#F84E00]/30 transition-all hover:scale-105 hover:bg-[#F84E00]/90 hover:shadow-xl hover:shadow-[#F84E00]/40"
+                  )}
+                >
+                  See the Details
+                  <ArrowUpRight className="size-4" />
+                </Link>
               </div>
             </CardHeader>
           </div>

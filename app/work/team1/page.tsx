@@ -563,7 +563,7 @@ export default function Team1CaseStudy() {
               builder pipeline scoped and run solo.
             </p>
 
-            <div className="mt-6 grid grid-cols-3 gap-3 md:max-w-xl">
+            <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3 md:max-w-xl">
               <div>
                 <div className="text-3xl font-bold text-[#F84E00] md:text-4xl">200K</div>
                 <div className="mt-0.5 text-[11px] uppercase tracking-wide text-black/45">
@@ -981,7 +981,7 @@ export default function Team1CaseStudy() {
                       </Badge>
                     )}
                   </div>
-                  <div className="mt-3 grid grid-cols-5 gap-1.5">
+                  <div className="mt-3 grid grid-cols-[1fr_1fr_1fr_1fr_1.3fr] gap-1.5">
                     {[
                       { label: "R", value: row.reach, tone: reachTone(row.reach) },
                       { label: "I", value: row.impact, tone: impactTone(row.impact) },
@@ -991,9 +991,9 @@ export default function Team1CaseStudy() {
                     ].map((cell) => (
                       <div
                         key={cell.label}
-                        className={`rounded-lg py-1.5 text-center ${cell.tone}`}
+                        className={`min-w-0 rounded-lg px-0.5 py-1.5 text-center ${cell.tone}`}
                       >
-                        <div className="text-[8px] font-semibold uppercase tracking-wide opacity-70">
+                        <div className="truncate text-[7px] font-semibold uppercase tracking-normal opacity-70">
                           {cell.label}
                         </div>
                         <div className="text-xs font-bold tabular-nums">

@@ -22,7 +22,7 @@ export function StatTile({
   return (
     <div
       className={cn(
-        "rounded-2xl p-5",
+        "min-w-0 rounded-2xl p-2 md:p-5",
         soft ? "bg-white/10" : "bg-black/[0.03]",
         className
       )}
@@ -30,17 +30,17 @@ export function StatTile({
       {Icon && (
         <Icon
           className={cn(
-            "mb-2 size-4",
+            "mb-1.5 size-3.5 md:mb-2 md:size-4",
             soft ? "text-white/45" : "text-black/35"
           )}
         />
       )}
-      <div className={cn("text-2xl font-bold tracking-tight md:text-3xl", valueClassName)}>
+      <div className={cn("text-base font-bold tracking-tight sm:text-lg md:text-3xl", valueClassName)}>
         {value}
       </div>
       <div
         className={cn(
-          "mt-1.5 text-[11px] font-medium uppercase leading-snug tracking-wide",
+          "mt-1 break-words text-[9px] font-medium uppercase leading-tight tracking-normal md:mt-1.5 md:text-[11px] md:leading-snug md:tracking-wide",
           soft ? "text-white/55" : "text-black/50"
         )}
       >

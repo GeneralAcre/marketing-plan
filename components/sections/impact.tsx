@@ -9,7 +9,7 @@ const TEAM1_HIGHLIGHTS = [
     label: "Top RICE Score — Strategic Prioritization",
     valueClassName: "text-[#FFCE4E]",
   },
-  { value: "5", label: "Universities — Cross-Functional Ops" },
+  { value: "5", label: "Universities — Full Program Ownership" },
 ];
 
 const CORE_SKILLS = [
