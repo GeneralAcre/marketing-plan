@@ -7,7 +7,7 @@ const PROJECTS = [
     number: "01",
     focus: "Marketing Campaigns",
     href: "/work/team1",
-    image: "/Campaign/Campaign-1.jpg",
+    image: "/frame/campaign-frame.png",
     alt: "University community gathering for the Avalanche Team1 program",
     imageClass: "object-cover",
   },
@@ -15,7 +15,7 @@ const PROJECTS = [
     number: "02",
     focus: "Brand Events",
     href: "/work/brand-events",
-    image: "/brand-event/brand-event-1.jpg",
+    image: "/frame/community-frame.png",
     alt: "Attendees taking part in a hands-on builder workshop",
     imageClass: "object-cover",
   },
@@ -23,7 +23,7 @@ const PROJECTS = [
     number: "03",
     focus: "Product Management & Merchandising",
     href: "/work/product-management",
-    image: "/event-picture/Meetup-2.jpeg",
+    image: "/frame/merch-frame.png",
     alt: "Community meetup organized by the Team1 program",
     imageClass: "object-cover",
   },
@@ -31,7 +31,7 @@ const PROJECTS = [
     number: "04",
     focus: "Content & Creative Production",
     href: "/work/content-creative",
-    image: "/event-picture/University-2.jpg",
+    image: "/frame/content-frame.png",
     alt: "University workshop as part of the Team1 builder education program",
     imageClass: "object-cover",
   },
@@ -45,17 +45,19 @@ function ProjectCard({ project }: { project: (typeof PROJECTS)[number] }) {
           src={project.image}
           alt={project.alt}
           fill
+          quality={100}
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
           className={`${project.imageClass} transition-transform duration-500 group-hover:scale-[1.025]`}
         />
-        <span className="absolute left-3 top-3 bg-white px-2 py-1 text-[11px] tabular-nums">[{project.number}]</span>
         {project.href && (
           <span className="absolute bottom-3 right-3 grid size-9 place-items-center rounded-full bg-white opacity-0 transition-opacity group-hover:opacity-100">
             <ArrowUpRight className="size-4" />
           </span>
         )}
       </div>
-      <p className="mt-4 text-base font-medium leading-snug tracking-tight text-black sm:text-lg lg:text-xl">{project.focus}</p>
+      <p className="mt-3 text-base font-medium leading-snug tracking-tight text-black sm:text-lg lg:text-xl">
+        [{project.number}] {project.focus}
+      </p>
     </>
   );
 

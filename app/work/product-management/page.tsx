@@ -21,6 +21,9 @@ export default function ProductManagementPage() {
       titleClassName="text-[clamp(2rem,3.2vw,3.75rem)]"
       eyebrow="Product Management & Merchandising"
       overviewTitle="Team1 Merchandise"
+      description="For each event, I decide what merchandise and materials are needed, then brief the graphic design team on what to create. I manage a ฿200,000 budget and coordinate production to make sure everything is completed on schedule within the execution timeline."
+      targetAudience="Team1 community members, university students, builders, and event attendees across Thailand."
+      results={[{ value: "฿200K", label: "Budget managed" }]}
     >
       <figure className="mt-5">
         <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#f4f4f4]">
@@ -34,6 +37,15 @@ export default function ProductManagementPage() {
           />
         </div>
       </figure>
+
+      <section className="mt-6 border-t border-black/15 pt-5">
+        <h3 className="text-xs font-semibold uppercase tracking-wide text-black/50">
+          Product Management &amp; Merchandising
+        </h3>
+        <p className="mt-2 text-sm leading-relaxed text-black/75">
+          For each event, I decide what merchandise and materials are needed, then brief the graphic design team on what to create. I manage the budget and coordinate production to make sure everything is completed on schedule within the execution timeline.
+        </p>
+      </section>
 
       <section className="mt-6 border-t border-black/15 pt-5">
         <h3 className="text-xs font-semibold uppercase tracking-wide text-black/50">

@@ -6,6 +6,11 @@ type ProjectDetailLayoutProps = {
   titleClassName?: string;
   eyebrow?: string;
   overviewTitle?: string;
+  description?: string;
+  targetAudience?: string;
+  strategicObjective?: string;
+  timeline?: { label: string; year?: string; dateTime?: string }[];
+  results?: { value: string; label: string }[];
   children?: ReactNode;
 };
 
@@ -14,6 +19,16 @@ export function ProjectDetailLayout({
   titleClassName,
   eyebrow,
   overviewTitle,
+  description = "Team1 is a global network of builders, developers, creatives, and community members growing the Avalanche ecosystem. As Thailand Operations Lead, I organize local university and community programs that bring people together to learn, build, and contribute.",
+  targetAudience = "University students (undergraduates and builders) across Thailand.",
+  strategicObjective = "Capture first-mover advantage by establishing the premier collegiate Web3 community network before competitors enter the market.",
+  timeline = [{ label: "May – Present", year: "2026", dateTime: "2026-05" }],
+  results = [
+    { value: "18", label: "Attendees" },
+    { value: "7", label: "Wallets Signups" },
+    { value: "9", label: "Smart contracts deployed" },
+    { value: "0", label: "Project Built" },
+  ],
   children,
 }: ProjectDetailLayoutProps) {
   return (
@@ -31,28 +46,28 @@ export function ProjectDetailLayout({
         <section className="mt-10 max-w-xl">
           <h2 className="text-sm font-semibold">Description</h2>
           <p className="mt-3 text-sm leading-relaxed text-white/75 sm:text-base">
-            Team1 is a global network of builders, developers, creatives, and community members growing the Avalanche ecosystem. As Thailand Operations Lead, I organize local university and community programs that bring people together to learn, build, and contribute.
+            {description}
           </p>
         </section>
         <section className="mt-8 max-w-xl border-t border-white/20 pt-6">
           <h2 className="text-sm font-semibold">Target Audience</h2>
           <p className="mt-3 text-sm leading-relaxed text-white/75 sm:text-base">
-            University students (undergraduates and builders) across Thailand.
+            {targetAudience}
           </p>
         </section>
         <section className="mt-8 max-w-xl border-t border-white/20 pt-6">
           <h2 className="text-sm font-semibold">Strategic Objective</h2>
           <p className="mt-3 text-sm leading-relaxed text-white/75 sm:text-base">
-            Capture first-mover advantage by establishing the premier collegiate Web3 community network before competitors enter the market.
+            {strategicObjective}
           </p>
         </section>
         <section className="mt-8 max-w-xl border-t border-white/20 pt-6">
           <h2 className="text-sm font-semibold">Timeline</h2>
           <ol className="mt-3 divide-y divide-white/15">
-            {["September", "October", "November"].map((month) => (
-              <li key={month} className="flex items-baseline justify-between gap-4 py-3 first:pt-1 last:pb-1">
-                <h3 className="text-sm font-medium">{month}</h3>
-                <time dateTime={`2026-${month === "September" ? "09" : month === "October" ? "10" : "11"}`} className="text-xs text-white/55">2026</time>
+            {timeline.map((item) => (
+              <li key={`${item.label}-${item.year ?? ""}`} className="flex items-baseline justify-between gap-4 py-3 first:pt-1 last:pb-1">
+                <h3 className="text-sm font-medium">{item.label}</h3>
+                {item.year && <time dateTime={item.dateTime} className="text-xs text-white/55">{item.year}</time>}
               </li>
             ))}
           </ol>
@@ -60,10 +75,12 @@ export function ProjectDetailLayout({
         <section className="mt-8 max-w-xl border-t border-white/20 pt-6">
           <h2 className="text-sm font-semibold">Result</h2>
           <div className="mt-4 grid grid-cols-2 gap-x-5 gap-y-4">
-            <div><p className="text-2xl font-semibold">18</p><p className="mt-1 text-[11px] text-white/55">Attendees</p></div>
-            <div><p className="text-2xl font-semibold">7</p><p className="mt-1 text-[11px] text-white/55">Wallets Signups</p></div>
-            <div><p className="text-2xl font-semibold">9</p><p className="mt-1 text-[11px] text-white/55">Smart contracts deployed</p></div>
-            <div><p className="text-2xl font-semibold">0</p><p className="mt-1 text-[11px] text-white/55">Project Built</p></div>
+            {results.map((result) => (
+              <div key={result.label}>
+                <p className="text-2xl font-semibold">{result.value}</p>
+                <p className="mt-1 text-[11px] text-white/55">{result.label}</p>
+              </div>
+            ))}
           </div>
         </section>
       </section>
