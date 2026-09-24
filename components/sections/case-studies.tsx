@@ -55,8 +55,9 @@ function ProjectCard({ project }: { project: (typeof PROJECTS)[number] }) {
           </span>
         )}
       </div>
-      <p className="mt-3 text-base font-medium leading-snug tracking-tight text-black sm:text-lg lg:text-xl">
-        [{project.number}] {project.focus}
+      <p className="mt-3 flex items-start gap-1.5 text-base font-medium leading-snug tracking-tight text-black sm:text-lg lg:text-xl">
+        <span className="shrink-0">[{project.number}]</span>
+        <span>{project.focus}</span>
       </p>
     </>
   );

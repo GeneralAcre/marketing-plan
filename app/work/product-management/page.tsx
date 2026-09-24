@@ -19,10 +19,13 @@ export default function ProductManagementPage() {
     <ProjectDetailLayout
       title={<>Product<br />Management &amp;<br />Merchandising</>}
       titleClassName="text-[clamp(2rem,3.2vw,3.75rem)]"
+      titleColorClassName="text-[#ADD795]"
       eyebrow="Product Management & Merchandising"
       overviewTitle="Team1 Merchandise"
       description="I manage merchandise projects from concept to production. I define event needs, brief designers, manage the budget, and coordinate production timelines. My role is project management and creative direction; the designer creates the graphics."
       targetAudience="Team1 community members, university students, builders, and event attendees across Thailand."
+      strategicObjective="Develop useful, event-ready merchandise for the Team1 community while managing project budgets and production timelines."
+      timeline={[]}
       results={[{ value: "฿200K", label: "Budget managed" }]}
     >
       <figure className="mt-5">

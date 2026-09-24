@@ -4,8 +4,10 @@ import Link from "next/link";
 type ProjectDetailLayoutProps = {
   title: ReactNode;
   titleClassName?: string;
+  titleColorClassName?: string;
   eyebrow?: string;
   overviewTitle?: string;
+  overviewTitleClassName?: string;
   description?: string;
   targetAudience?: string;
   strategicObjective?: string;
@@ -18,8 +20,10 @@ type ProjectDetailLayoutProps = {
 export function ProjectDetailLayout({
   title,
   titleClassName,
+  titleColorClassName,
   eyebrow,
   overviewTitle,
+  overviewTitleClassName,
   description = "Team1 is a global network of builders, developers, creatives, and community members growing the Avalanche ecosystem. As Thailand Operations Lead, I organize local university and community programs that bring people together to learn, build, and contribute.",
   targetAudience = "University students (undergraduates and builders) across Thailand.",
   strategicObjective = "Capture first-mover advantage by establishing the premier collegiate Web3 community network before competitors enter the market.",
@@ -42,7 +46,7 @@ export function ProjectDetailLayout({
         >
           Back to work
         </Link>
-        <h1 className={`font-black uppercase leading-[0.88] tracking-[-0.07em] ${titleClassName ?? "text-[clamp(2.75rem,5vw,5rem)]"}`}>
+        <h1 className={`font-black uppercase leading-[0.88] tracking-[-0.07em] ${titleClassName ?? "text-[clamp(2.75rem,5vw,5rem)]"} ${titleColorClassName ?? ""}`}>
           {title}
         </h1>
         <section className="mt-10 max-w-xl">
@@ -89,14 +93,14 @@ export function ProjectDetailLayout({
 
       <section className="flex min-h-[60vh] flex-col items-center bg-white px-6 py-12 lg:min-h-0 lg:px-10 lg:py-16">
         {(eyebrow || overviewTitle || children) && (
-          <div className="w-[86%] max-w-[1100px]">
+          <div className="w-full max-w-[1100px] lg:w-[86%]">
             {eyebrow && (
               <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-black/45">
                 {eyebrow}
               </p>
             )}
             {overviewTitle && (
-              <h2 className="mt-1 text-xl font-semibold leading-tight text-black sm:text-2xl">
+              <h2 className={`mt-1 text-xl font-semibold leading-tight text-black sm:text-2xl ${overviewTitleClassName ?? ""}`}>
                 {overviewTitle}
               </h2>
             )}

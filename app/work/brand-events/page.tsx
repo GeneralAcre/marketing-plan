@@ -113,6 +113,7 @@ export default function BrandEventsPage() {
   return (
     <ProjectDetailLayout
       title={<>Brand<br />Events</>}
+      titleColorClassName="text-[#EB9B28]"
       eyebrow="Brand Events"
       overviewTitle="Community Activations"
       description="As an Event Manager and Operations Lead, I drive community growth and ecosystem expansion across Thailand’s Web3 landscape. My work bridges developer education and community culture spanning university workshops, hackathons, networking mixers, and large-scale sports and watch parties. By designing engaging in-person experiences, I bring together builders, students, and enthusiasts to collaborate, learn, and ship real projects."
@@ -122,7 +123,7 @@ export default function BrandEventsPage() {
         { label: "August 2025 – Present", year: "Ongoing", dateTime: "2025-08" },
       ]}
       results={[
-        { value: TOTAL_REGISTRATIONS.toLocaleString(), label: "Registered" },
+        { value: TOTAL_REGISTRATIONS.toLocaleString(), label: "Registrations" },
         { value: TOTAL_ATTENDEES.toLocaleString(), label: "Attendees" },
         { value: `${ATTENDANCE_RATE}%`, label: "Attendance rate" },
       ]}
@@ -208,7 +209,7 @@ export default function BrandEventsPage() {
             </figure>
             {(event.registrations || event.attendees) && <dl className="order-3 grid grid-cols-2 gap-x-6 gap-y-4 sm:col-start-2 sm:row-start-2">
               <div>
-                <dt className="text-xs text-black/55">Registration cap</dt>
+                <dt className="text-xs text-black/55">Registrations</dt>
                 <dd className="mt-0.5 text-xl font-semibold text-[#EB9B28]">{event.registrations ?? "—"}</dd>
               </div>
               <div>

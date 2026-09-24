@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ProjectDetailLayout } from "@/components/work/project-detail-layout";
 
 export const metadata: Metadata = {
-  title: "Avalanche Team1 — Case Study",
+  title: "Marketing Campaigns",
   description:
     "A university growth and community program built through workshops, chapter launches, and builder education.",
 };
@@ -11,9 +11,20 @@ export const metadata: Metadata = {
 export default function Team1CaseStudy() {
   return (
     <ProjectDetailLayout
-      title={<>Avalanche<br />Team1</>}
+      title={<>Marketing<br />Campaigns</>}
+      titleColorClassName="text-[#BB0102]"
       eyebrow="Campaign Overview"
       overviewTitle="University Builder Series"
+      overviewTitleClassName="hidden lg:block"
+      strategicObjective="Build a university community that moves students from blockchain education into hands-on product building on Avalanche."
+      timeline={[]}
+      resultsTitle="Chula Workshop Results"
+      results={[
+        { value: "31", label: "Registrations" },
+        { value: "18", label: "Attendees" },
+        { value: "7", label: "Wallets deployed" },
+        { value: "9", label: "Contracts deployed" },
+      ]}
     >
           <div className="mt-5 w-full">
             <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#e9e8e4]">
@@ -23,24 +34,31 @@ export default function Team1CaseStudy() {
                 fill
                 priority
                 sizes="(min-width: 1024px) 28vw, 86vw"
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           </div>
+          <h2 className="mt-4 text-xl font-semibold leading-tight text-black sm:text-2xl lg:hidden">
+            University Builder Series
+          </h2>
           <div className="mt-6 w-full">
             <div className="grid gap-x-8 gap-y-6">
-              <section className="rounded-sm bg-[#BB0102] p-4 text-white sm:p-5">
-                <h3 className="text-xs font-semibold uppercase tracking-wide text-white/75">Rollout</h3>
-                <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
-                  {["Chulalongkorn", "Thammasat", "Kasetsart", "Mahidol", "KMITL"].map((university) => (
-                    <div key={university} className="flex min-h-14 items-center bg-black/15 px-3 py-2 text-sm font-medium">
-                      {university}
-                    </div>
-                  ))}
+              <section className="rounded-sm border border-black/10 border-l-4 border-l-[#BB0102] bg-[#BB0102]/[0.035] p-4 sm:p-5">
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                  <h3 className="text-xs font-semibold uppercase tracking-wide text-black/55">Rollout</h3>
+                  <p className="text-xs text-black/55">5 university campuses</p>
                 </div>
-                <p className="mt-4 border-t border-white/30 pt-3 text-sm leading-relaxed text-white/90">
-                  Next: expand to regional campuses nationwide.
-                </p>
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {["Chulalongkorn", "Thammasat", "Kasetsart", "Mahidol", "KMITL"].map((university) => (
+                    <li key={university} className="rounded-full border border-black/10 bg-white px-3 py-2 text-sm font-medium text-black/80">
+                      {university}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-5 flex flex-wrap gap-x-3 gap-y-1 border-t border-black/10 pt-4">
+                  <span className="text-xs font-semibold uppercase tracking-wide text-[#BB0102]">Next phase</span>
+                  <p className="text-sm leading-relaxed text-black/70">Expand to regional campuses nationwide.</p>
+                </div>
               </section>
             </div>
 

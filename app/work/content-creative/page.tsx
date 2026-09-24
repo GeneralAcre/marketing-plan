@@ -13,9 +13,10 @@ export default function ContentCreativePage() {
     <ProjectDetailLayout
       title={<>Content &amp;<br />Creative<br />Production</>}
       titleClassName="text-[clamp(2rem,3.2vw,3.75rem)]"
+      titleColorClassName="text-[#A5A3FF]"
       eyebrow="Content & Creative Production"
       overviewTitle="Selected Content Projects"
-      description="I proactively develop content ideas and recommendations for Team1 Thailand. I shape creative direction for event graphics and promotion, then brief and coordinate with Team1 Global to bring those ideas to life."
+      description="I proactively develop content ideas and recommendations for Team1 Thailand. I shape creative direction for event graphics and promotion, then brief creative collaborators to bring those ideas to life."
       targetAudience="Thai university students, builders, and Web3 community members interested in Team1 events."
       strategicObjective="Increase awareness and participation in Team1 events through clear, engaging creative concepts and coordinated promotion."
       timeline={[]}
@@ -51,7 +52,7 @@ export default function ContentCreativePage() {
               alt="Team1 hackathon promotional creative"
               fill
               sizes="(min-width: 1024px) 28vw, 86vw"
-              className="object-cover"
+              className="object-contain"
             />
           </div>
         </figure>
@@ -62,7 +63,7 @@ export default function ContentCreativePage() {
               alt="Additional Team1 hackathon campaign creative"
               fill
               sizes="(min-width: 1024px) 28vw, 86vw"
-              className="object-cover"
+              className="object-contain"
             />
           </div>
         </figure>
@@ -77,7 +78,7 @@ export default function ContentCreativePage() {
       </section>
 
       <section className="mt-6 border-t border-black/15 pt-5">
-        <h3 className="text-lg font-semibold text-black">AcreLabs : Avalanche Moment</h3>
+        <h3 className="text-lg font-semibold text-black">AcreLabs: Avalanche Moment</h3>
         <figure className="mt-4">
           <div className="relative aspect-[2692/1904] w-full overflow-hidden bg-[#e9e8e4]">
             <Image

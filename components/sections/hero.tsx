@@ -23,6 +23,9 @@ export function Hero() {
         <h1 className="mt-6 max-w-4xl break-words text-[1.75rem] font-bold leading-[1.1] tracking-tight min-[376px]:text-[2rem] sm:text-4xl sm:leading-[1.05] md:text-6xl">
           Sanpaphat Porntongprasert
         </h1>
+        <p className="mt-2 text-sm font-semibold uppercase tracking-[0.14em] text-black/50">
+          Marketing Portfolio
+        </p>
 
         <p className="mt-6 max-w-2xl text-2xl font-bold leading-snug tracking-tight md:text-3xl">
           200K THB, Zero Marketing Hires — a 5-University Builder
@@ -30,7 +33,7 @@ export function Hero() {
         </p>
 
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-black/55 md:text-lg">
-          RICE-scored prioritization, 8 events shipped solo, and builder
+          RICE-scored prioritization, 8 events delivered, and builder
           acquisition at ~1,334 THB — 4–7x cheaper than industry grants.
         </p>
 
