@@ -5,9 +5,9 @@ const CONTACT_LINKS = [
     href: "https://x.com/Acrepedia",
   },
   {
-    label: "Medium",
-    value: "@Sanpaphat Porntongprasert",
-    href: "https://medium.com/@SanpaphatPorntongprasert",
+    label: "LinkedIn",
+    value: "Sanpaphat Porntongprasert",
+    href: "https://www.linkedin.com/in/sanpaphat-porntongprasert/",
   },
   {
     label: "Email",
