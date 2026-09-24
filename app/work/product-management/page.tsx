@@ -21,15 +21,15 @@ export default function ProductManagementPage() {
       titleClassName="text-[clamp(2rem,3.2vw,3.75rem)]"
       eyebrow="Product Management & Merchandising"
       overviewTitle="Team1 Merchandise"
-      description="For each event, I decide what merchandise and materials are needed, then brief the graphic design team on what to create. I manage a ฿200,000 budget and coordinate production to make sure everything is completed on schedule within the execution timeline."
+      description="I manage merchandise projects from concept to production. I define event needs, brief designers, manage the budget, and coordinate production timelines. My role is project management and creative direction; the designer creates the graphics."
       targetAudience="Team1 community members, university students, builders, and event attendees across Thailand."
       results={[{ value: "฿200K", label: "Budget managed" }]}
     >
       <figure className="mt-5">
-        <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#f4f4f4]">
+        <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#ADD795]/20">
           <Image
-            src={MERCH_IMAGES[0].src}
-            alt={MERCH_IMAGES[0].alt}
+            src={MERCH_IMAGES[1].src}
+            alt={MERCH_IMAGES[1].alt}
             fill
             priority
             sizes="(min-width: 1024px) 55vw, 86vw"
@@ -38,21 +38,52 @@ export default function ProductManagementPage() {
         </div>
       </figure>
 
-      <section className="mt-6 border-t border-black/15 pt-5">
-        <h3 className="text-xs font-semibold uppercase tracking-wide text-black/50">
-          Product Management &amp; Merchandising
+      <section className="mt-6 border-t border-[#ADD795]/70 pt-5">
+        <h3 className="text-xs font-semibold uppercase tracking-wide text-black/75">
+          Merchandise Project Management
         </h3>
         <p className="mt-2 text-sm leading-relaxed text-black/75">
-          For each event, I decide what merchandise and materials are needed, then brief the graphic design team on what to create. I manage the budget and coordinate production to make sure everything is completed on schedule within the execution timeline.
+          I take merchandise from an initial idea to event-ready production. I consider the event and its audience, develop merchandise concepts, plan the budget, brief the designer, and coordinate the production timeline. My role is to manage the project and creative direction; I do not create the graphics myself.
         </p>
+        <div className="mt-4 grid gap-3 sm:grid-cols-3">
+          <article className="border-t-2 border-[#ADD795] bg-[#ADD795]/10 p-4">
+            <h4 className="text-sm font-semibold">01 · Concept &amp; Planning</h4>
+            <p className="mt-2 text-sm leading-relaxed text-black/65">
+              Come up with merchandise ideas that fit the event, audience, and community, then define what needs to be produced.
+            </p>
+          </article>
+          <article className="border-t-2 border-[#ADD795] bg-[#ADD795]/10 p-4">
+            <h4 className="text-sm font-semibold">02 · Budget Management</h4>
+            <p className="mt-2 text-sm leading-relaxed text-black/65">
+              Plan and track the merchandise budget, balancing event needs with available resources.
+            </p>
+          </article>
+          <article className="border-t-2 border-[#ADD795] bg-[#ADD795]/10 p-4">
+            <h4 className="text-sm font-semibold">03 · Design Brief &amp; Production</h4>
+            <p className="mt-2 text-sm leading-relaxed text-black/65">
+              Brief the designer on creative direction and requirements, then coordinate production so merchandise is ready on schedule.
+            </p>
+            <a
+              href="https://x.com/Memofrogwell"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 flex items-center justify-between gap-3 border border-[#ADD795] bg-[#ADD795] px-3 py-3 text-sm transition-colors hover:bg-[#ADD795]/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22381B]"
+            >
+              <span>
+                <span className="block font-semibold text-[#22381B]">Frogwell</span>
+                <span className="mt-0.5 block text-xs text-black/60">View designer profile</span>
+              </span>
+            </a>
+          </article>
+        </div>
       </section>
 
-      <section className="mt-6 border-t border-black/15 pt-5">
-        <h3 className="text-xs font-semibold uppercase tracking-wide text-black/50">
+      <section className="mt-6 border-t border-[#ADD795]/70 pt-5">
+        <h3 className="text-xs font-semibold uppercase tracking-wide text-black/75">
           Merchandise Gallery
         </h3>
         <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
-          {MERCH_IMAGES.slice(1).map((image) => (
+          {MERCH_IMAGES.filter((_, index) => index !== 1).map((image) => (
             <figure key={image.src}>
               <div className="relative aspect-[4/5] w-full overflow-hidden">
                 <Image

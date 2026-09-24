@@ -10,6 +10,7 @@ type ProjectDetailLayoutProps = {
   targetAudience?: string;
   strategicObjective?: string;
   timeline?: { label: string; year?: string; dateTime?: string }[];
+  resultsTitle?: string;
   results?: { value: string; label: string }[];
   children?: ReactNode;
 };
@@ -23,6 +24,7 @@ export function ProjectDetailLayout({
   targetAudience = "University students (undergraduates and builders) across Thailand.",
   strategicObjective = "Capture first-mover advantage by establishing the premier collegiate Web3 community network before competitors enter the market.",
   timeline = [{ label: "May – Present", year: "2026", dateTime: "2026-05" }],
+  resultsTitle = "Result",
   results = [
     { value: "18", label: "Attendees" },
     { value: "7", label: "Wallets Signups" },
@@ -61,7 +63,7 @@ export function ProjectDetailLayout({
             {strategicObjective}
           </p>
         </section>
-        <section className="mt-8 max-w-xl border-t border-white/20 pt-6">
+        {timeline.length > 0 && <section className="mt-8 max-w-xl border-t border-white/20 pt-6">
           <h2 className="text-sm font-semibold">Timeline</h2>
           <ol className="mt-3 divide-y divide-white/15">
             {timeline.map((item) => (
@@ -71,9 +73,9 @@ export function ProjectDetailLayout({
               </li>
             ))}
           </ol>
-        </section>
-        <section className="mt-8 max-w-xl border-t border-white/20 pt-6">
-          <h2 className="text-sm font-semibold">Result</h2>
+        </section>}
+        {results.length > 0 && <section className="mt-8 max-w-xl border-t border-white/20 pt-6">
+          <h2 className="text-sm font-semibold">{resultsTitle}</h2>
           <div className="mt-4 grid grid-cols-2 gap-x-5 gap-y-4">
             {results.map((result) => (
               <div key={result.label}>
@@ -82,7 +84,7 @@ export function ProjectDetailLayout({
               </div>
             ))}
           </div>
-        </section>
+        </section>}
       </section>
 
       <section className="flex min-h-[60vh] flex-col items-center bg-white px-6 py-12 lg:min-h-0 lg:px-10 lg:py-16">
