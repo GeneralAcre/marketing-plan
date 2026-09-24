@@ -1,70 +1,68 @@
-import { cn } from "cn";
-import Link from "next/link";
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+
+const PROJECTS = [
+  {
+    number: "01",
+    focus: "Marketing Campaigns (Strategy & Growth)",
+    image: "/event-picture/University-1.JPG",
+    alt: "University community gathering for the Avalanche Team1 program",
+    imageClass: "object-cover",
+  },
+  {
+    number: "02",
+    focus: "Brand Events & Experiential Marketing",
+    image: "/event-picture/Workshop-1.jpg",
+    alt: "Attendees taking part in a hands-on builder workshop",
+    imageClass: "object-cover",
+  },
+  {
+    number: "03",
+    focus: "Product Management & Merchandising",
+    image: "/event-picture/Meetup-2.jpeg",
+    alt: "Community meetup organized by the Team1 program",
+    imageClass: "object-cover",
+  },
+  {
+    number: "04",
+    focus: "Content & Creative Production",
+    image: "/event-picture/University-2.jpg",
+    alt: "University workshop as part of the Team1 builder education program",
+    imageClass: "object-cover",
+  },
+];
 
 export function CaseStudies() {
   return (
-    <section id="case-studies" className="w-full scroll-mt-24">
-      <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 md:p-12 lg:p-16">
-        <p className="max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
-          How the Avalanche Team1 program was built.
-        </p>
+    <section id="work" className="w-full scroll-mt-24">
+      <div className="flex items-end justify-between gap-4 border-b border-black/15 pb-5">
+        <h2 className="text-2xl font-medium tracking-tight md:text-3xl">Work [2025–2026]</h2>
+      </div>
 
-        {/* Case Study — Avalanche Team1 */}
-        <Card className="mt-8 gap-0 overflow-hidden bg-black/[0.02] py-0 shadow-none ring-1 ring-black/5">
-          <div className="grid grid-cols-1 md:grid-cols-[200px_1fr]">
-            <div className="relative aspect-[16/9] md:aspect-auto md:h-full">
+      <div className="mt-7 grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-5 sm:gap-y-10 lg:grid-cols-4">
+        {PROJECTS.map((project) => (
+          <Link
+            key={project.number}
+            href="/work/team1"
+            className="group block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+          >
+            <div className="relative aspect-[4/4.4] overflow-hidden bg-[#e9e8e4]">
               <Image
-                src="/event-picture/Workshop-1.jpg"
-                alt="Avalanche Team1 builder workshop"
+                src={project.image}
+                alt={project.alt}
                 fill
-                sizes="(min-width: 768px) 200px, 100vw"
-                className="object-cover"
+                sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                className={`${project.imageClass} transition-transform duration-500 group-hover:scale-[1.025]`}
               />
+              <span className="absolute left-3 top-3 bg-white px-2 py-1 text-[11px] tabular-nums">[{project.number}]</span>
+              <span className="absolute bottom-3 right-3 grid size-9 place-items-center rounded-full bg-white opacity-0 transition-opacity group-hover:opacity-100">
+                <ArrowUpRight className="size-4" />
+              </span>
             </div>
-
-            <CardHeader className="grid-cols-1 gap-3 px-6 py-6">
-              <div className="flex flex-wrap items-center justify-between gap-4">
-                <div>
-                  <CardTitle className="font-sans text-xl font-bold md:text-2xl">
-                    Avalanche Team1 : 5 University Series
-                  </CardTitle>
-                  <p className="mt-1 text-sm font-medium text-black/55">
-                    Operations Lead
-                  </p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    <Badge
-                      variant="outline"
-                      className="h-auto px-2.5 py-1 text-[11px] font-medium text-black/60"
-                    >
-                      ADR #001
-                    </Badge>
-                    <Badge className="h-auto border-transparent bg-[#FFCE4E] px-2.5 py-1 text-[11px] font-semibold text-black">
-                      200K THB Budget
-                    </Badge>
-                    <Badge className="h-auto border-transparent bg-[#F84E00] px-2.5 py-1 text-[11px] font-semibold text-white">
-                      5 Chapters
-                    </Badge>
-                  </div>
-                </div>
-                <Link
-                  href="/work/team1"
-                  className={cn(
-                    buttonVariants({ variant: "default" }),
-                    "h-auto shrink-0 rounded-full bg-[#F84E00] px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#F84E00]/30 transition-all hover:scale-105 hover:bg-[#F84E00]/90 hover:shadow-xl hover:shadow-[#F84E00]/40"
-                  )}
-                >
-                  See the Details
-                  <ArrowUpRight className="size-4" />
-                </Link>
-              </div>
-            </CardHeader>
-          </div>
-        </Card>
+            <p className="mt-4 text-base font-medium leading-snug tracking-tight text-black sm:text-lg lg:text-xl">{project.focus}</p>
+          </Link>
+        ))}
       </div>
     </section>
   );

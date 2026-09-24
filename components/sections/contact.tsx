@@ -1,48 +1,43 @@
-import { Mail, Send } from "lucide-react";
-
 const CONTACT_LINKS = [
+  {
+    label: "X / Twitter",
+    value: "@Acrepedia",
+    href: "https://x.com/Acrepedia",
+  },
+  {
+    label: "Medium",
+    value: "@Sanpaphat Porntongprasert",
+    href: "https://medium.com/@SanpaphatPorntongprasert",
+  },
   {
     label: "Email",
     value: "acreforcoding@gmail.com",
     href: "mailto:acreforcoding@gmail.com",
-    icon: Mail,
-  },
-  {
-    label: "Telegram",
-    value: "@AcreSanpaphat",
-    href: "https://t.me/AcreSanpaphat",
-    icon: Send,
   },
 ];
 
 export function Contact() {
   return (
-    <section id="contact" className="w-full scroll-mt-24">
-      <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 md:p-12 lg:p-16">
-        <p className="max-w-2xl text-2xl font-bold tracking-tight md:text-3xl">
-          Let&apos;s talk.
-        </p>
-
-        <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+    <section
+      id="contact"
+      className="relative left-1/2 w-screen -translate-x-1/2 bg-background px-6 py-8 text-black sm:px-10 lg:px-16"
+    >
+      <div className="mx-auto max-w-[1600px] border-y border-black/15">
+        <div className="grid gap-8 py-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12 lg:px-10">
           {CONTACT_LINKS.map((link) => (
             <a
               key={link.label}
               href={link.href}
               target={link.href.startsWith("http") ? "_blank" : undefined}
-              rel={
-                link.href.startsWith("http")
-                  ? "noopener noreferrer"
-                  : undefined
-              }
-              className="group flex flex-col gap-3 rounded-2xl bg-black/[0.03] p-5 transition-colors hover:bg-black hover:text-white"
+              rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              className="group flex flex-col gap-1"
             >
-              <link.icon className="size-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              <div className="flex flex-col gap-1">
-                <span className="text-[11px] font-semibold uppercase tracking-wide opacity-55">
-                  {link.label}
-                </span>
-                <span className="text-sm font-medium">{link.value}</span>
-              </div>
+              <span className="text-sm font-semibold uppercase tracking-wide text-black/50">
+                {link.label}
+              </span>
+              <span className="w-fit text-xl font-semibold underline decoration-black/40 underline-offset-4 transition-colors group-hover:text-black/60 sm:text-2xl">
+                {link.value}
+              </span>
             </a>
           ))}
         </div>

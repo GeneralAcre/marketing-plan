@@ -2,29 +2,28 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { MessageCircle, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
-  { href: "/#impact", label: "Impact" },
-  { href: "/#case-studies", label: "Case Studies" },
-  { href: "/#ai-toolkit", label: "AI Toolkit" },
-  { href: "/#contact", label: "Hire Me" },
+  { href: "/#work", label: "Work" },
+  { href: "/#focus", label: "Focus" },
+  { href: "/work/team1", label: "Case Study" },
 ];
 
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-20 w-full bg-background px-4 pt-4 md:px-8 md:pt-6">
-      <div className="mx-auto max-w-6xl">
-        <div className="flex items-center justify-between gap-4 rounded-full border border-black/10 bg-white/90 px-4 py-2.5 shadow-sm backdrop-blur-md md:px-6">
+    <header className="sticky top-0 z-20 w-full border-b border-black/10 bg-background/95 px-5 py-4 backdrop-blur-md sm:px-8 md:px-12">
+      <div className="mx-auto max-w-[1600px]">
+        <div className="flex items-center justify-between gap-4">
           <Link
             href="/"
-            className="shrink-0 text-sm font-bold tracking-tight"
+            className="shrink-0 text-sm font-semibold tracking-tight"
           >
             Acre
           </Link>
-          <nav className="hidden items-center gap-6 text-[13px] font-medium text-black/55 md:flex">
+          <nav className="hidden items-center gap-8 text-[13px] font-medium text-black/55 md:flex">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
@@ -36,13 +35,6 @@ export default function SiteHeader() {
             ))}
           </nav>
           <div className="flex shrink-0 items-center gap-2">
-            <Link
-              href="/#contact"
-              className="flex items-center gap-1.5 rounded-full bg-black px-4 py-1.5 text-[13px] font-medium text-white transition-colors hover:bg-black/80"
-            >
-              <MessageCircle className="size-3.5" />
-              Contact
-            </Link>
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
@@ -56,7 +48,7 @@ export default function SiteHeader() {
         </div>
 
         {open && (
-          <nav className="mt-2 flex flex-col gap-1 rounded-2xl border border-black/10 bg-white/95 p-2 shadow-sm backdrop-blur-md md:hidden">
+          <nav className="absolute inset-x-0 top-full flex flex-col gap-1 border-b border-black/10 bg-background p-4 md:hidden">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}

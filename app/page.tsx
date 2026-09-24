@@ -1,31 +1,31 @@
 import type { Metadata } from "next";
-import SiteHeader from "@/components/site-header";
-import { Hero } from "@/components/sections/hero";
-import { Impact } from "@/components/sections/impact";
-import { Gallery } from "@/components/sections/gallery";
-import { Architecture } from "@/components/sections/architecture";
 import { CaseStudies } from "@/components/sections/case-studies";
-import { AiToolkit } from "@/components/sections/ai-toolkit";
 import { Contact } from "@/components/sections/contact";
+import { ArrowDownToLine } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Acre — Marketing Portfolio | Interlock GTM, Operations & Builder Lead",
+  title: "Acre — Marketing Portfolio",
   description:
-    "Sanpaphat 'Acre' Porntongprasert — turning a fixed budget into a five-university builder pipeline, scored and run like a product.",
+    "Selected marketing, event, merchandising, and creative work by Sanpaphat 'Acre' Porntongprasert.",
 };
 
 export default function Home() {
   return (
     <div className="flex min-h-full w-full flex-col">
-      <SiteHeader />
+      <main className="mx-auto flex w-full max-w-[1600px] flex-col gap-16 px-5 py-12 sm:px-8 md:gap-24 md:px-12 md:py-16">
+        <section id="focus" className="flex flex-col gap-7 border-b border-black/15 pb-10 md:flex-row md:items-end md:justify-between md:pb-14">
+          <h1 className="mt-5 max-w-5xl text-3xl font-medium leading-[0.98] tracking-[-0.06em] sm:text-5xl md:text-7xl">Sanpaphat<br className="hidden sm:block" /> Porntongprasert</h1>
+          <a
+            href="https://drive.google.com/drive/folders/15jSRsKVAzv75epQmutLIzA_yjgoYTniX?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex w-fit items-center gap-2 border-b border-black pb-1 text-sm font-medium transition-opacity hover:opacity-60"
+          >
+            Download CV <ArrowDownToLine className="size-4" />
+          </a>
+        </section>
 
-      <main className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-4 md:gap-6 md:px-8 md:py-6">
-        <Hero />
-        <Impact />
-        <Gallery />
-        <Architecture />
         <CaseStudies />
-        <AiToolkit />
         <Contact />
       </main>
     </div>
