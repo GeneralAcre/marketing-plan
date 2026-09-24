@@ -12,43 +12,8 @@ export default function Team1CaseStudy() {
   return (
     <ProjectDetailLayout
       title={<>Avalanche<br />Team1</>}
-      description="Team1 is a global network of builders, developers, creatives, and community members growing the Avalanche ecosystem. As Thailand Operations Lead, I organize local university and community programs that bring people together to learn, build, and contribute."
       eyebrow="Campaign Overview"
       overviewTitle="University Builder Series"
-      details={[
-        {
-          title: "Target Audience",
-          content: "University students (undergraduates and builders) across Thailand.",
-        },
-        {
-          title: "Strategic Objective",
-          content: "Capture first-mover advantage by establishing the premier collegiate Web3 community network before competitors enter the market.",
-        },
-        {
-          title: "Timeline",
-          content: (
-            <ol className="divide-y divide-white/15">
-              {["September", "October", "November"].map((month) => (
-                <li key={month} className="flex items-baseline justify-between gap-4 py-3 first:pt-1 last:pb-1">
-                  <h3 className="text-sm font-medium">{month}</h3>
-                  <time dateTime={`2026-${month === "September" ? "09" : month === "October" ? "10" : "11"}`} className="text-xs text-white/55">2026</time>
-                </li>
-              ))}
-            </ol>
-          ),
-        },
-        {
-          title: "Result",
-          content: (
-            <div className="grid grid-cols-2 gap-x-5 gap-y-4">
-              <div><p className="text-2xl font-semibold">18</p><p className="mt-1 text-[11px] text-white/55">Attendees</p></div>
-              <div><p className="text-2xl font-semibold">7</p><p className="mt-1 text-[11px] text-white/55">Wallets Signups</p></div>
-              <div><p className="text-2xl font-semibold">9</p><p className="mt-1 text-[11px] text-white/55">Smart contracts deployed</p></div>
-              <div><p className="text-2xl font-semibold">0</p><p className="mt-1 text-[11px] text-white/55">Project Built</p></div>
-            </div>
-          ),
-        },
-      ]}
     >
           <div className="mt-5 w-full">
             <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#e9e8e4]">
@@ -117,7 +82,7 @@ export default function Team1CaseStudy() {
                   href="https://luma.com/u3mxs2uu"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 inline-flex rounded-full bg-black px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-black/75"
+                  className="mt-4 inline-flex rounded-md bg-black px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-black/75"
                 >
                   Visit
                 </a>

@@ -7,34 +7,57 @@ export const metadata: Metadata = {
   description: "University workshops and community gatherings designed as in-person brand experiences.",
 };
 
-const EVENTS = [
-  { image: "/brand-event/brand-event-1.jpg", title: "Brand Event 01" },
-  { image: "/brand-event/brand-event-2.JPG", title: "Brand Event 02" },
-  { image: "/brand-event/brand-event-3.jpg", title: "Brand Event 03" },
-  { image: "/brand-event/brand-event-4.JPG", title: "Brand Event 04" },
+const EVENTS: {
+  image: string;
+  title: string;
+  href: string;
+  date?: string;
+  dateTime?: string;
+  registrations?: string;
+  attendees?: string;
+}[] = [
+  {
+    image: "/brand-event/brand-event-1.jpg",
+    title: "Team1 Build & Play",
+    href: "https://luma.com/nh5q08ya",
+    date: "15 August 2026",
+    dateTime: "2026-08-15",
+    registrations: "40",
+    attendees: "32",
+  },
+  { image: "/brand-event/brand-event-2.JPG", 
+    title: "Team1 World Cup Watch Party — Bangkok",
+    href: "https://luma.com/qft154n1",
+    date: "4 July 2026",
+    dateTime: "2026-07-04",
+    registrations: "33",
+    attendees: "27",
+  },
+  {
+    image: "/brand-event/brand-event-3.jpg",
+    title: "Padel Rave Bangkok",
+    href: "https://luma.com/fvaudkw0?tk=nE50tZ",
+    date: "1 August 2026",
+    dateTime: "2026-08-01",
+    registrations: "206",
+    attendees: "185",
+  },
+  { image: "/brand-event/brand-event-4.JPG", 
+    title: "Team1 x Pudgy Padel Night",
+    href: "https://luma.com/team1Pudgy",
+    date: "24 May 2026",
+    dateTime: "2026-05-24",
+    registrations: "105",
+    attendees: "60",
+   },
 ];
 
 export default function BrandEventsPage() {
   return (
     <ProjectDetailLayout
       title={<>Brand<br />Events</>}
-      description="In-person experiences bring university and builder communities together through workshops, meetups, and shared activities."
       eyebrow="Brand Events"
-      overviewTitle="University & Community Activations"
-      details={[
-        {
-          title: "Audience",
-          content: "University students, builders, and local community members.",
-        },
-        {
-          title: "Experience Goal",
-          content: "Create welcoming spaces for people to meet, learn, and take part in the community.",
-        },
-        {
-          title: "Event Formats",
-          content: "Workshops, networking sessions, and community gatherings.",
-        },
-      ]}
+      overviewTitle="Community Activations"
     >
       <section className="mt-5 border-t border-black/15 pt-5">
         <h3 className="text-xs font-semibold uppercase tracking-wide text-black/50">
@@ -78,17 +101,28 @@ export default function BrandEventsPage() {
               <h3 className="text-sm font-semibold leading-snug text-black sm:text-base">
                 {event.title}
               </h3>
-              <p className="mt-1 text-xs text-black/55">Community event</p>
-              <button
-                type="button"
-                className="mt-4 inline-flex rounded-full bg-black px-5 py-2.5 text-sm font-semibold text-white"
+              {event.date && event.dateTime && (
+                <time dateTime={event.dateTime} className="mt-1 block text-xs text-black/55">
+                  {event.date}
+                </time>
+              )}
+              <a
+                href={event.href}
+                target={event.href ? "_blank" : undefined}
+                rel={event.href ? "noopener noreferrer" : undefined}
+                aria-disabled={!event.href}
+                className="mt-4 inline-flex rounded-md bg-black px-5 py-2.5 text-sm font-semibold text-white"
               >
                 Visit
-              </button>
-              <dl className="mt-6 w-full max-w-[220px]">
+              </a>
+              <dl className="mt-6 grid w-full max-w-[420px] grid-cols-2 gap-x-6 gap-y-4">
+                <div>
+                  <dt className="text-xs text-black/55">Registration cap</dt>
+                  <dd className="mt-0.5 text-xl font-semibold">{event.registrations ?? "—"}</dd>
+                </div>
                 <div>
                   <dt className="text-xs text-black/55">Attendees</dt>
-                  <dd className="mt-0.5 text-2xl font-semibold">—</dd>
+                  <dd className="mt-0.5 text-xl font-semibold">{event.attendees ?? "—"}</dd>
                 </div>
               </dl>
             </div>

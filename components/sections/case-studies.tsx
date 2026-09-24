@@ -22,7 +22,7 @@ const PROJECTS = [
   {
     number: "03",
     focus: "Product Management & Merchandising",
-    href: undefined,
+    href: "/work/product-management",
     image: "/event-picture/Meetup-2.jpeg",
     alt: "Community meetup organized by the Team1 program",
     imageClass: "object-cover",
@@ -30,7 +30,7 @@ const PROJECTS = [
   {
     number: "04",
     focus: "Content & Creative Production",
-    href: undefined,
+    href: "/work/content-creative",
     image: "/event-picture/University-2.jpg",
     alt: "University workshop as part of the Team1 builder education program",
     imageClass: "object-cover",
