@@ -14,16 +14,15 @@ export default function ContentCreativePage() {
       title={<>Content &amp;<br />Creative<br />Production</>}
       titleClassName="text-[clamp(2rem,3.2vw,3.75rem)]"
       titleColorClassName="text-[#A5A3FF]"
-      eyebrow="Content & Creative Production"
       overviewTitle="Selected Content Projects"
+      overviewTitleClassName="hidden lg:block"
       description="I proactively develop content ideas and recommendations for Team1 Thailand. I shape creative direction for event graphics and promotion, then brief creative collaborators to bring those ideas to life."
       targetAudience="Thai university students, builders, and Web3 community members interested in Team1 events."
       strategicObjective="Increase awareness and participation in Team1 events through clear, engaging creative concepts and coordinated promotion."
       timeline={[]}
       results={[]}
     >
-      <h3 className="mt-5 text-lg font-semibold text-black">Team1 Hackathon Promotion</h3>
-      <figure className="mt-5">
+      <figure className="-mx-6 -mt-12 w-[calc(100%+3rem)] lg:mx-0 lg:mt-5 lg:w-full">
         <div className="relative aspect-[1892/860] w-full overflow-hidden bg-[#e9e8e4]">
           <Image
             src="/content/Content-1.png"
@@ -35,6 +34,10 @@ export default function ContentCreativePage() {
           />
         </div>
       </figure>
+      <h2 className="mt-4 text-xl font-semibold leading-tight text-black sm:text-2xl lg:hidden">
+        Selected Content Projects
+      </h2>
+      <h3 className="mt-5 text-lg font-semibold text-black">Team1 Hackathon Promotion</h3>
       <section className="mt-6 border-t border-black/15 pt-5">
         <h3 className="text-xs font-semibold uppercase tracking-wide text-black/50">Execution</h3>
         <p className="mt-2 text-sm leading-relaxed text-black/75">

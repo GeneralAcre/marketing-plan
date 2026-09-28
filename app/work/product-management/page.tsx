@@ -20,15 +20,15 @@ export default function ProductManagementPage() {
       title={<>Product<br />Management &amp;<br />Merchandising</>}
       titleClassName="text-[clamp(2rem,3.2vw,3.75rem)]"
       titleColorClassName="text-[#ADD795]"
-      eyebrow="Product Management & Merchandising"
       overviewTitle="Team1 Merchandise"
+      overviewTitleClassName="hidden lg:block"
       description="I manage merchandise projects from concept to production. I define event needs, brief designers, manage the budget, and coordinate production timelines. My role is project management and creative direction; the designer creates the graphics."
       targetAudience="Team1 community members, university students, builders, and event attendees across Thailand."
       strategicObjective="Develop useful, event-ready merchandise for the Team1 community while managing project budgets and production timelines."
       timeline={[]}
       results={[{ value: "฿200K", label: "Budget managed" }]}
     >
-      <figure className="mt-5">
+      <figure className="-mx-6 -mt-12 w-[calc(100%+3rem)] lg:mx-0 lg:mt-5 lg:w-full">
         <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#ADD795]/20">
           <Image
             src={MERCH_IMAGES[1].src}
@@ -40,6 +40,9 @@ export default function ProductManagementPage() {
           />
         </div>
       </figure>
+      <h2 className="mt-4 text-xl font-semibold leading-tight text-black sm:text-2xl lg:hidden">
+        Team1 Merchandise
+      </h2>
 
       <section className="mt-6 border-t border-[#ADD795]/70 pt-5">
         <h3 className="text-xs font-semibold uppercase tracking-wide text-black/75">

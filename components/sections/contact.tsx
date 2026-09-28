@@ -23,14 +23,14 @@ export function Contact() {
       className="relative left-1/2 w-screen -translate-x-1/2 bg-background px-6 py-8 text-black sm:px-10 lg:px-16"
     >
       <div className="mx-auto max-w-[1600px] border-y border-black/15">
-        <div className="grid auto-rows-fr gap-4 py-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6 lg:px-10">
+        <div className="grid gap-y-6 py-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6 lg:px-10">
           {CONTACT_LINKS.map((link) => (
             <a
               key={link.label}
               href={link.href}
               target={link.href.startsWith("http") ? "_blank" : undefined}
               rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="group flex min-h-28 min-w-0 w-full flex-col justify-center gap-1"
+              className="group flex min-w-0 w-full flex-col gap-1"
             >
               <span className="text-sm font-semibold uppercase tracking-wide text-black/50">
                 {link.label}

@@ -114,8 +114,8 @@ export default function BrandEventsPage() {
     <ProjectDetailLayout
       title={<>Brand<br />Events</>}
       titleColorClassName="text-[#EB9B28]"
-      eyebrow="Brand Events"
       overviewTitle="Community Activations"
+      overviewTitleClassName="hidden lg:block"
       description="As an Event Manager and Operations Lead, I drive community growth and ecosystem expansion across Thailand’s Web3 landscape. My work bridges developer education and community culture spanning university workshops, hackathons, networking mixers, and large-scale sports and watch parties. By designing engaging in-person experiences, I bring together builders, students, and enthusiasts to collaborate, learn, and ship real projects."
       targetAudience="Web3 community members across Thailand, including builders, students, and enthusiasts."
       strategicObjective="Grow Thailand’s Web3 community through in-person events that connect builders, students, and enthusiasts with each other and with ecosystem partners."
@@ -129,7 +129,7 @@ export default function BrandEventsPage() {
       ]}
       resultsTitle="Event Impact"
     >
-      <figure className="mt-5">
+      <figure className="-mx-6 -mt-12 w-[calc(100%+3rem)] lg:mx-0 lg:mt-5 lg:w-full">
         <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#e9e8e4]">
           <Image
             src={RECENT_EVENTS[0].image}
@@ -141,6 +141,9 @@ export default function BrandEventsPage() {
           />
         </div>
       </figure>
+      <h2 className="mt-4 text-xl font-semibold leading-tight text-black sm:text-2xl lg:hidden">
+        Community Activations
+      </h2>
 
       <section className="mt-5 border-t border-black/15 pt-5">
         <h3 className="text-xs font-semibold uppercase tracking-wide text-black/50">
