@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div className="flex min-h-full w-full flex-col">
-      <main className="mx-auto flex w-full max-w-[1600px] flex-col gap-16 px-5 py-12 sm:px-8 md:gap-24 md:px-12 md:py-16">
+      <main className="mx-auto flex w-full max-w-[1600px] flex-col gap-16 px-5 pt-12 pb-0 sm:px-8 md:gap-24 md:px-12 md:pt-16 md:pb-0">
         <section id="focus" className="flex flex-col gap-7 border-b border-black/15 pb-10 md:flex-row md:items-end md:justify-between md:pb-14">
           <h1 className="mt-5 max-w-5xl text-3xl font-medium leading-[0.98] tracking-[-0.06em] sm:text-5xl md:text-7xl">Sanpaphat<br className="hidden sm:block" /> Porntongprasert</h1>
           <a

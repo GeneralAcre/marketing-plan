@@ -20,7 +20,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative left-1/2 w-screen -translate-x-1/2 bg-background px-6 py-8 text-black sm:px-10 lg:px-16"
+      className="relative left-1/2 w-screen -translate-x-1/2 bg-background px-6 pt-8 pb-0 text-black sm:px-10 lg:px-16"
     >
       <div className="mx-auto max-w-[1600px] border-y border-black/15">
         <div className="grid gap-y-6 py-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6 lg:px-10">

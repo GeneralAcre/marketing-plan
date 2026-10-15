@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 
 type Campaign = {
   title: string;
+  level: "Beginner" | "Intermediate";
   dateTime: string;
   date: string;
   image: string;
@@ -21,6 +22,7 @@ type Campaign = {
 const campaigns: Campaign[] = [
   {
     title: "Team1 x Chula: Avalanche Builder Workshop & Networking",
+    level: "Beginner",
     dateTime: "2026-09-05",
     date: "5 September 2026",
     image: "/Campaign/Campaign-chula-workshop-1.jpg",
@@ -35,6 +37,7 @@ const campaigns: Campaign[] = [
   },
   {
     title: "Team1 Codebase Hackathon: Chula Edition",
+    level: "Intermediate",
     dateTime: "2026-09-26",
     date: "26 September 2026",
     image: "/Campaign/Campaign-codebase.jpeg",
@@ -49,6 +52,7 @@ const campaigns: Campaign[] = [
   },
   {
     title: "Team1 x KU: Introduction to Blockchain",
+    level: "Beginner",
     dateTime: "2026-10-11",
     date: "11 October 2026",
     image: "/Campaign/Campaign-kaset.jpg",
@@ -136,7 +140,12 @@ export default function Team1CaseStudy() {
                       />
                     </figure>
                     <div className="flex flex-col justify-center py-1 pr-4 sm:py-5 sm:pr-5">
-                      <h3 className="text-base font-semibold leading-snug text-black sm:text-base">{campaign.title}</h3>
+                      <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
+                        <h3 className="min-w-0 text-base font-semibold leading-snug text-black sm:flex-1 sm:text-base">{campaign.title}</h3>
+                        <span className="inline-flex shrink-0 self-end rounded-md bg-black px-3 py-1.5 text-xs font-semibold text-white sm:self-start">
+                          {campaign.level}
+                        </span>
+                      </div>
                       <time dateTime={campaign.dateTime} className="mt-1 block text-sm text-black/55">{campaign.date}</time>
                       <dl className="mt-5 grid grid-cols-2 gap-x-5 gap-y-4">
                         {campaign.stats.map(([label, value]) => (
@@ -148,7 +157,7 @@ export default function Team1CaseStudy() {
                           href={campaign.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="mt-6 inline-flex h-fit w-fit rounded-md bg-[#BB0102] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#970102]"
+                          className="mt-6 inline-flex h-fit w-full max-w-[240px] self-center justify-center rounded-md bg-[#BB0102] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#970102] sm:w-fit sm:max-w-none sm:self-end"
                         >
                           Visit
                         </a>
